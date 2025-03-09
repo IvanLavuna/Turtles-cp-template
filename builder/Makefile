@@ -6,7 +6,7 @@ help:
 	@echo "This makefile builds LNU notebook"
 	@echo ""
 	@echo "Available commands are:"
-	@echo "	make Turtles	- to build Turtles notebook"
+	@echo "	make Turtles	-  to build Turtles notebook"
 	@echo "	make clean		- to clean up the build process"
 	@echo ""
 	@echo "For more information go to blackbox Makefile"
