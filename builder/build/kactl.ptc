@@ -1,0 +1,12 @@
+\contentsline {chapter}{\numberline {1}Contest}{1}{chapter.1}%
+\ttl@starttoc {chapters@1}
+\contentsline {section}{\texttt {template.hpp}\hspace {0.2em}}{1}{chapter.1}%
+\contentsline {section}{\texttt {compilation.txt}\hspace {0.2em}}{1}{lstnumber.1.1.28}%
+\contentsline {section}{\texttt {s.sh}\hspace {0.2em}}{1}{lstnumber.1.2.2}%
+\contentsline {section}{\texttt {hash.sh}\hspace {0.2em}}{1}{lstnumber.1.3.6}%
+\contentsline {chapter}{\numberline {2}Data Structures}{2}{chapter.2}%
+\ttl@stoptoc {chapters@1}
+\ttl@starttoc {chapters@2}
+\contentsline {section}{\texttt {dsu.hpp}\hspace {0.2em}}{2}{chapter.2}%
+\contentsline {section}{\texttt {fenwick.hpp}\hspace {0.2em}}{2}{lstnumber.2.1.31}%
+\contentsfinish 
