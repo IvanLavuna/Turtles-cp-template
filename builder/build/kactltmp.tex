@@ -1,79 +1,39 @@
-\kactlref{convex-hull-trick.hpp}
-\defdescription{$\text{add}(a, b)$ adds a straight line $y = a x + b$.
-\texttt{getMaxY(p)} finds the maximum $y$ at $x = p$.
-}
-\rightcaption{bb0dd6, 72 lines}
-\begin{lstlisting}[caption={convex-hull-trick.hpp}, language=C++]
-struct Line
-{
-	LL a, b, xLast;
-	Line() {}
-	Line(LL _a, LL _b): a(_a), b(_b) {}
-	bool operator<(const Line& l) const
-	{
-		return MP(a, b) < MP(l.a, l.b);
-	}
-	bool operator<(int x) const
-	{
-		return xLast < x;
-	}
-	__int128 getY(__int128 x) const
-	{
-		return a * x + b;
-	}
-	LL intersect(const Line& l) const
-	{
-		assert(a < l.a);
-		LL dA = l.a - a, dB = b - l.b, x = dB / dA;
-		if (dB < 0 && dB % dA != 0)
-			x--;
-		return x;
-	}
-};
+\kactlref{nim-product.hpp}
+\defdescription{The Nim sum $\oplus$: $a \oplus b := \text{mex} (\{a' \oplus b | a' \ensuremath{<} a\} \cup \{a \oplus b' | b' \ensuremath{<} b\})$.
+The Nim product $\otimes$: $a \otimes b := \text{mex} \{(a' \otimes b) \oplus (a \otimes b') \oplus (a' \otimes b') | a' \ensuremath{<} a, b' \ensuremath{<} b\}$.
+Let $A$ be the set consisting of integers between $0$ (inclusive) and $2^{2^n}$ (exclusive) (where $n$ is an integer).
+Then the algebraic structure whose addition is $\oplus$ and multiplication is $\otimes$ forms a field. Such a field is called \textbf{Nimber}.}
+\deftime{About 64 references to the precalculation table.}
+\rightcaption{5a518b, 30 lines}
+\begin{lstlisting}[caption={nim-product.hpp}, language=C++]
+typedef unsigned long long ull;
 
-struct ConvexHull: set<Line, less<>>
+const int S = 8;
+
+int small[1 << S][1 << S];
+
+void init()
 {
-	bool needErase(iterator it, const Line& l)
-	{
-		LL x = it->xLast;
-		if (it->getY(x) > l.getY(x))
-			return false;
-		if (it == begin())
-			return it->a >= l.a;
-		x = prev(it)->xLast + 1;
-		return it->getY(x) < l.getY(x);
-	}
-	void add(LL a, LL b)
-	{
-		Line l(a, b);
-		auto it = lower_bound(l);
-		if (it != end())
-		{
-			LL x = it == begin() ? -LINF :
-					prev(it)->xLast;
-			if ((it == begin()
-				|| prev(it)->getY(x) >= l.getY(x))
-				&& it->getY(x + 1) >= l.getY(x + 1))
-				return;
-		}
-		while (it != end() && needErase(it, l))
-			it = erase(it);
-		while (it != begin() && needErase(prev(it), l))
-			erase(prev(it));
-		if (it != begin())
-		{
-			auto itP = prev(it);
-			Line itL = *itP;
-			itL.xLast = itP->intersect(l);
-			erase(itP);
-			insert(itL);
-		}
-		l.xLast = it == end() ? LINF : l.intersect(*it);
-		insert(l);
- 	}
-	LL getMaxY(LL p)
-	{
-		return lower_bound(p)->getY(p);
-	}
-};
+	FOR(i, 0, 1 << S)
+		FOR(j, 0, 1 << S)
+			small[i][j] = -1;
+}
+
+ull nimProduct(ull a, ull b, int p = 64)
+{
+	if (min(a, b) <= 1)
+		return a * b;
+	if (p <= S && small[a][b] != -1)
+		return small[a][b];
+	p >>= 1;
+	ull a1 = a >> p, a2 = a & ((1ULL << p) - 1);
+	ull b1 = b >> p, b2 = b & ((1ULL << p) - 1);
+	ull c = nimProduct(a1, b1, p);
+	ull d = nimProduct(a2, b2, p);
+	ull e = nimProduct(a1 ^ a2, b1 ^ b2, p);
+	ull res = nimProduct(c, 1ULL << (p - 1), p) ^ d ^ ((d ^ e) << p);
+	if (p <= S / 2)
+		small[a][b] = res;
+	return res;
+}
 \end{lstlisting}
