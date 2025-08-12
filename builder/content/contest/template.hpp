@@ -11,7 +11,9 @@ using namespace std;
 #define pb push_back
 #define MP make_pair
 #define x first
+#define F first
 #define y second
+#define S second
 
 typedef long long ll;
 typedef double db;
