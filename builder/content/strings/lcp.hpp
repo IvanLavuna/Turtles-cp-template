@@ -7,7 +7,7 @@ struct LCP
 	VI s, sa, rnk, lcp;
 	SparseTable st;
 
-	LCP(VI _s): n(SZ(_s)), s(_s)
+	LCP(VI _s): n(sz(_s)), s(_s)
 	{
 		sa = suffixArray(s);
 		rnk.resize(n);
@@ -15,7 +15,7 @@ struct LCP
 			rnk[sa[i]] = i;
 		lcpArray();
 		FOR (i, 0, n - 1)
-			st.PB(lcp[i]);
+			st.pb(lcp[i]);
 	}
 
 	void lcpArray()

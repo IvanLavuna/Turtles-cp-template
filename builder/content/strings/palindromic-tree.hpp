@@ -34,7 +34,7 @@ struct PalTree
 		}
 		if (a[cur].to[ch] == -1)
 		{
-			a[cur].to[ch] = SZ(a);
+			a[cur].to[ch] = sz(a);
 			int link = a[cur].link;
 			while (link != -1)
 			{
@@ -47,7 +47,7 @@ struct PalTree
 				link = 1;
 			else
 				link = a[link].to[ch];
-			a.PB(Node(link, a[cur].len + 2));
+			a.pb(Node(link, a[cur].len + 2));
 		}
 		last = a[cur].to[ch];
 	}

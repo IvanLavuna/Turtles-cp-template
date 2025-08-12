@@ -1,6 +1,6 @@
 VI zFunction(const string& s)
 {
-	int n = SZ(s);
+	int n = sz(s);
 	VI z(n);
 
 	int l = 0;

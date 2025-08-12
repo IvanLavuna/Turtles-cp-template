@@ -26,14 +26,14 @@ struct AC
 	int addStr(const string& s)
 	{
 		int v = 0;
-		FOR (i, 0, SZ(s))
+		FOR (i, 0, sz(s))
 		{
 			// change to [0 AL)
 			int c = s[i] - 'a'; 
 			if (a[v].nxt[c] == -1)
 			{
-				a[v].nxt[c] = SZ(a);
-				a.PB(Node(c, v));
+				a[v].nxt[c] = sz(a);
+				a.pb(Node(c, v));
 			}
 			v = a[v].nxt[c];
 		}

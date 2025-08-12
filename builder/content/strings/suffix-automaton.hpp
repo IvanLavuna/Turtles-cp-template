@@ -26,8 +26,8 @@ struct Automaton
 	{
 		// change to [0 AL)
 		int ch = c - 'a';
-		int nhead = SZ(a);
-		a.PB(Node());
+		int nhead = sz(a);
+		a.pb(Node());
 		a[nhead].len = a[head].len + 1;
 		int cur = head;
 		head = nhead;
@@ -47,8 +47,8 @@ struct Automaton
 			a[head].link = p;
 			return;
 		}
-		int q = SZ(a);
-		a.PB(Node());
+		int q = sz(a);
+		a.pb(Node());
 		a[q] = a[p];
 		a[q].cnt = 0;
 		a[q].len = a[cur].len + 1;
