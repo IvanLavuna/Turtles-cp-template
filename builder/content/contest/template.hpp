@@ -20,7 +20,7 @@ typedef pair<int, int> pii;
 typedef pair<db, db> pdd;
 typedef pair<ll, ll> pll;
 typedef vector<int> VI;
-typedef vector<LL> VL;
+typedef vector<ll> VL;
 
 int solve()
 {
