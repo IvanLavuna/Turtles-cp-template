@@ -1,4 +1,12 @@
 /**
+ * Description: Number-theoretic transform. If you need complex-valued FFT, use the commented out code.
+ * Time: O(n \log n)
+ */
+const int LEN = 1 << 23;
+const int GEN = 31;
+
+
+/**
  * Description: Finds the polynomials $P_j$ such that
  * $\sum_{j=0}^d P_j(i) \cdot a_{i + d - j} = 0$.
  * Returns an empty vector if unable to find such polynomials.
@@ -7,12 +15,12 @@
  */
 vector<VI> findCoefsOfPRecursive(const VI& a, int d)
 {
-	int m = (SZ(a) - d) / (d + 1) - 1;
+	int m = (sz(a) - d) / (d + 1) - 1;
 	if (m < 0)
 		return {};
 	int n = (m + 1) * (d + 1);
-	vector<VI> matr(SZ(a) - d, VI(n));
-	FOR(i, 0, SZ(a) - d)
+	vector<VI> matr(sz(a) - d, VI(n));
+	FOR(i, 0, sz(a) - d)
 	{
 		FOR(j, 0, d + 1)
 		{
@@ -24,7 +32,7 @@ vector<VI> findCoefsOfPRecursive(const VI& a, int d)
 			}
 		}
 	}
-	auto [v, w] = solveLinearSystem(matr, VI(SZ(a) - d));
+	auto [v, w] = solveLinearSystem(matr, VI(sz(a) - d));
 	if(w.empty())
 		return {};
 	vector<VI> p(d + 1);

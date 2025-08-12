@@ -4,12 +4,12 @@
  */
 db closestPair(vector<Pt> v)
 {
-	sort(ALL(v), [](const Pt& p, const Pt& q)
+	sort(all(v), [](const Pt& p, const Pt& q)
 	{
 		return sgn(p.x - q.x) < 0;
 	});
 	set<pair<db, db>> s;
-	int n = SZ(v), ptr = 0;
+	int n = sz(v), ptr = 0;
 	db h = 1e18;
 	FOR(i, 0, n)
 	{

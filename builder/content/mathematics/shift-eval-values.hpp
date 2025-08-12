@@ -6,7 +6,7 @@
  */
 VI shiftEvalValues(VI a, int c, int m)
 {
-	int n = SZ(a);
+	int n = sz(a);
 	VI q(n);
 	FOR(i, 0, n)
 	{
@@ -15,7 +15,7 @@ VI shiftEvalValues(VI a, int c, int m)
 			q[i] = sub(0, q[i]);
 	}
 	VI s(n + m - 1);
-	FOR(i, 0, SZ(s))
+	FOR(i, 0, sz(s))
 		s[i] = binpow(sub(add(c, i), n - 1), mod - 2);
 	VI res = mult(q, s);
 	res = {res.begin() + n - 1, res.begin() + n + m - 1};

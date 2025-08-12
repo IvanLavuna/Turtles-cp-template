@@ -14,7 +14,7 @@ VL mongeShortestPath(int n, const F& cost)
 	
 	auto update = [&](int i, int k)
 	{
-		LL nd = dist[k] + cost(k, i);
+		ll nd = dist[k] + cost(k, i);
 		if (nd < dist[i])
 		{
 			dist[i] = nd;

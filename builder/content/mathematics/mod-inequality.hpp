@@ -2,7 +2,7 @@
  * Description: Finds the smallest $x \ge 0$ such that $(ax + b) \mod m \ge c$. Returns $-1$, if the solution does not exist.
  * Time: O(\log m).
  */
-int modInequality(LL m, LL a, LL b, LL c)
+int modInequality(ll m, ll a, ll b, ll c)
 {
 	a %= m;
 	b %= m;

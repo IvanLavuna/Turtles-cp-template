@@ -42,7 +42,7 @@ struct ThreeSAT
 			return ans[k] == t;	
 		
 		ans[k] = t;
-		fixed.PB(k);		
+		fixed.pb(k);		
 		FOR(i, 0, n)
 		{
 			if(ans[i] == -1)

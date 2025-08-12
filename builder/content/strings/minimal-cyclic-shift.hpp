@@ -6,7 +6,7 @@
 
 int minimalCyclicShift(VI s)
 {
-	int n = SZ(s);
+	int n = sz(s);
 	s.resize(2 * n);
 	FOR(i, 0, n)
 		s[n + i] = s[i];

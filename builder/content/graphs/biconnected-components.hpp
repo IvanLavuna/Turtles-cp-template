@@ -7,7 +7,7 @@
 struct Graph
 {
 	int n, m;
-	vector<PII> edges;
+	vector<pii> edges;
 	vector<VI> g;
 
 	VI used, par;
@@ -33,14 +33,14 @@ struct Graph
 		assert(0 <= i && i < m);
 		
 		edges[i] = MP(a, b);
-		g[a].PB(i);
-		g[b].PB(i);
+		g[a].pb(i);
+		g[b].pb(i);
 	}
 	
 	void addComp()
 	{
 		unordered_set<int> s;
-		s.reserve(7 * SZ(components[c]));
+		s.reserve(7 * sz(components[c]));
 		for (auto e : components[c])
 		{
 			s.insert(edges[e].F);
@@ -48,7 +48,7 @@ struct Graph
 			inComp[edges[e].F] = true;
 			inComp[edges[e].S] = true;
 		}
-		verticesCol.PB(VI(ALL(s)));
+		verticesCol.pb(VI(all(s)));
 	}
 
 	void dfs(int v, int p = -1)
@@ -67,7 +67,7 @@ struct Graph
 			if (!used[to])
 			{
 				cnt++;
-				st.PB(e);
+				st.pb(e);
 				dfs(to, v);
 				
 				low[v] = min(low[v], low[to]);
@@ -75,15 +75,15 @@ struct Graph
 				if ((par[v] == -1 && cnt > 1) || 
 				(par[v] != -1 && low[to] >= tin[v]))
 				{
-					components.PB({});
+					components.pb({});
 					while (st.back() != e)
 					{
-						components[c].PB(st.back());
+						components[c].pb(st.back());
 						col[st.back()] = c;
 						
 						st.pop_back();
 					}
-					components[c].PB(st.back());
+					components[c].pb(st.back());
 					addComp();
 					col[st.back()] = c++;
 						
@@ -94,7 +94,7 @@ struct Graph
 			{
 				low[v] = min(low[v], tin[to]);
 				if (tin[to] < tin[v])
-					st.PB(e);
+					st.pb(e);
 			}
 		}	
 	}
@@ -105,12 +105,12 @@ struct Graph
 			if (used[i]) continue;
 			dfs(i, -1);
 			if (st.empty()) continue;
-			components.PB({});
+			components.pb({});
 			while (!st.empty())
 			{
 				int e = st.back();
 				col[e] = c;
-				components[c].PB(e);
+				components[c].pb(e);
 				st.pop_back();
 			}
 			addComp();
@@ -118,6 +118,6 @@ struct Graph
 		}
 		FOR (i, 0, n)
 			if (!inComp[i])
-				verticesCol.PB(VI(1, i));
+				verticesCol.pb(VI(1, i));
 	}
 };

@@ -10,7 +10,7 @@
  */
 VI mult(const VI& a, const VI& b)
 {
-	int n = SZ(a), m = SZ(b);
+	int n = sz(a), m = sz(b);
 	if (n == 0 || m == 0)
 		return {};
 	const int mods[3] = {754974721, 167772161, 469762049};

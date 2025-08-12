@@ -2,9 +2,9 @@
  * Description: Finds a maximum matching that has the minimum weight in a weighted bipartite graph.
  * Time: O(n^2 m)
  */
-LL hungarian(const vector<VL>& a)
+ll hungarian(const vector<VL>& a)
 {
-	int n = SZ(a), m = SZ(a[0]);
+	int n = sz(a), m = sz(a[0]);
 	assert(n <= m);
 	VL u(n + 1), v(m + 1);
 	VI p(m + 1, n), way(m + 1);
@@ -18,12 +18,12 @@ LL hungarian(const vector<VL>& a)
 		{
 			used[j0] = true;
 			int i0 = p[j0], j1 = -1;
-			LL delta = LINF;
+			ll delta = LINF;
 			FOR(j, 0, m)
 			{
 				if (!used[j])
 				{
-					LL cur = a[i0][j] - u[i0] - v[j];
+					ll cur = a[i0][j] - u[i0] - v[j];
 					if (cur < minv[j])
 					{
 						minv[j] = cur;
@@ -59,7 +59,7 @@ LL hungarian(const vector<VL>& a)
 	VI ans(n + 1);
 	FOR(j, 0, m)
 		ans[p[j]] = j;
-	LL res = 0;
+	ll res = 0;
 	FOR(i, 0, n)
 		res += a[i][ans[i]];
 	assert(res == -v[m]);

@@ -33,15 +33,15 @@ struct SuffixTree
 			auto [nv, nl, nr] = a[v].g[s[l]];
 			if (c == s[nl + r - l + 1])
 				return {true, v};
-			int newNode = SZ(a);
-			a.PB(Node());
+			int newNode = sz(a);
+			a.pb(Node());
 			a[v].g[s[l]] = {newNode, nl, nl + r - l};
 			a[newNode].g[s[nl + r - l + 1]] = {nv, nl + r - l + 1, nr};
 			return {false, newNode};
 		}
 		return {a[v].g.count(c), v};
 	}
-	PII canonize(int v, int l, int r)
+	pii canonize(int v, int l, int r)
 	{
 		if (v == -1 && l <= r)
 		{
@@ -60,14 +60,14 @@ struct SuffixTree
 		}
 		return {v, l};
 	}
-	PII update(int v, int l, int r)
+	pii update(int v, int l, int r)
 	{
 		int oldu = 0;
 		auto [endPoint, u] = testAndSplit(v, l, r - 1, s[r]);
 		while (!endPoint)
 		{
-			int newNode = SZ(a);
-			a.PB(Node());
+			int newNode = sz(a);
+			a.pb(Node());
 			a[u].g[s[r]] = {newNode, r, INF};
 			if (oldu != 0)
 				a[oldu].link = u;
@@ -83,12 +83,12 @@ struct SuffixTree
 	{
 		s = _s;
 		// Add the symbol that was not present in `s`
-		s.PB(-1);
-		a.reserve(2 * SZ(s));
+		s.pb(-1);
+		a.reserve(2 * sz(s));
 		a = {Node()};
 		a[0].link = -1;
 		int v = 0, l = 0;
-		FOR(i, 0, SZ(s))
+		FOR(i, 0, sz(s))
 		{
 			tie(v, l) = update(v, l, i);
 			tie(v, l) = canonize(v, l, i);

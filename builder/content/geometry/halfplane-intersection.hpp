@@ -7,11 +7,11 @@
 vector<Pt> hplaneInter(vector<Line> lines)
 {
 	const db C = 1e9;
-	lines.PB({{-C, C}, {-C, -C}});
-	lines.PB({{-C, -C}, {C, -C}});
-	lines.PB({{C, -C}, {C, C}});
-	lines.PB({{C, C}, {-C, C}});
-	sort(ALL(lines), [](const Line& l1, const Line& l2)
+	lines.pb({{-C, C}, {-C, -C}});
+	lines.pb({{-C, -C}, {C, -C}});
+	lines.pb({{C, -C}, {C, C}});
+	lines.pb({{C, C}, {-C, C}});
+	sort(all(lines), [](const Line& l1, const Line& l2)
 	{
 		bool h1 = half(l1.n), h2 = half(l2.n);
 		if (h1 != h2)
@@ -21,17 +21,17 @@ vector<Pt> hplaneInter(vector<Line> lines)
 			return p > 0;
 		return sgn(l1.c / abs(l1.n)	- l2.c / abs(l2.n)) < 0;
 	});
-	lines.erase(unique(ALL(lines), parallel), lines.end());
+	lines.erase(unique(all(lines), parallel), lines.end());
 	deque<pair<Line, Pt>> d;
 	for (const Line& l : lines)
 	{
-		while (SZ(d) > 1 && sgn(l.side((d.end() - 1)->S)) < 0)
+		while (sz(d) > 1 && sgn(l.side((d.end() - 1)->S)) < 0)
 			d.pop_back();
-		while (SZ(d) > 1 && sgn(l.side((d.begin() + 1)->S)) < 0)
+		while (sz(d) > 1 && sgn(l.side((d.begin() + 1)->S)) < 0)
 			d.pop_front();
 		if (!d.empty() && sgn(cross(d.back().F.n, l.n)) <= 0)
 			return {};
-		if (SZ(d) < 2 || sgn(d.front().F.side(inter(l, d.back().F))) >= 0)
+		if (sz(d) < 2 || sgn(d.front().F.side(inter(l, d.back().F))) >= 0)
 		{
 			Pt p;
 			if (!d.empty())
@@ -40,14 +40,14 @@ vector<Pt> hplaneInter(vector<Line> lines)
 				if (!parallel(l, d.front().F))
 					d.front().S = inter(l, d.front().F);
 			}
-			d.PB({l, p});
+			d.pb({l, p});
 		}
 	}
 	vector<Pt> res;
 	for (auto [l, p] : d)
 	{
 		if (res.empty() || sgn(sq(p - res.back())) > 0)
-			res.PB(p);
+			res.pb(p);
 	}
 	return res;
 }

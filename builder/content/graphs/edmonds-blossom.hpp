@@ -17,8 +17,8 @@ struct Graph
 		assert(0 <= v && v < n);
 		u++;
 		v++;
-		g[u].PB(v);
-		g[v].PB(u);
+		g[u].pb(v);
+		g[v].pb(u);
 	}
 	void augmentPath(int v, int w)
 	{
@@ -47,8 +47,8 @@ struct Graph
 		{
 			if (mate[u] != 0)
 				continue;
-			fill(ALL(label), -1);
-			iota(ALL(first), 0);
+			fill(all(label), -1);
+			iota(all(first), 0);
 			dsu.init(n + 1);
 			label[u] = 0;
 			dsu.unite(u, 0);

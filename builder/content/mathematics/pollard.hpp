@@ -5,21 +5,21 @@
  * Time: $O(n^{1/4} \cdot \log n)$.
  **/
  
-LL f(LL x, LL c, LL n)
+ll f(ll x, ll c, ll n)
 {
 	return add(mult(x, x, n), c, n);
 }
 
-LL rho(LL n)
+ll rho(ll n)
 {
 	const int iter = 47 * pow(n, 0.25);
 	while (true)
 	{
-		LL x0 = rng() % n;
-		LL c = rng() % n;
-		LL x = x0;
-		LL y = x0;
-		LL g = 1;
+		ll x0 = rng() % n;
+		ll c = rng() % n;
+		ll x = x0;
+		ll y = x0;
+		ll g = 1;
 		FOR (i, 0, iter)
 		{
 			x = f(x, c, n);
@@ -35,7 +35,7 @@ LL rho(LL n)
 }
 VI primes = {2, 3, 5, 7, 11, 13, 17, 19, 23};
 
-VL factorize(LL n)
+VL factorize(ll n)
 {
 	VL ans;
 	
@@ -43,24 +43,24 @@ VL factorize(LL n)
 	{
 		while (n % p == 0)
 		{
-			ans.PB(p);
+			ans.pb(p);
 			n /= p;
 		}
 	}
-	queue<LL> q;
+	queue<ll> q;
 	q.push(n);
 	
 	while (!q.empty())
 	{
-		LL x = q.front();
+		ll x = q.front();
 		q.pop();
 		if (x == 1)
 			continue;
 		if (millerRabin(x))
-			ans.PB(x);
+			ans.pb(x);
 		else
 		{
-			LL y = rho(x);
+			ll y = rho(x);
 			q.push(y);
 			q.push(x / y);
 		}

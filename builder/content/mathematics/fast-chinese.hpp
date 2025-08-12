@@ -3,16 +3,16 @@
  * $\rightarrow x$ or -1.
  * Time: O(n\log(\text{lcm}(p_i)))
  */
-LL fastChinese(vector<LL> m, vector<LL> p)
+ll fastChinese(vector<ll> m, vector<ll> p)
 {
-	assert(SZ(m) == SZ(p));
-	LL aa = p[0];
-	LL bb = m[0];
-	FOR(i, 1, SZ(m))
+	assert(sz(m) == sz(p));
+	ll aa = p[0];
+	ll bb = m[0];
+	FOR(i, 1, sz(m))
 	{
-		LL b = (m[i] - bb % p[i] + p[i]) % p[i];
-		LL a = aa % p[i];
-		LL c = p[i];
+		ll b = (m[i] - bb % p[i] + p[i]) % p[i];
+		ll a = aa % p[i];
+		ll c = p[i];
 		
 		auto [d, x, y] = gcdExt(a, c);
 		if(b % d != 0)

@@ -46,7 +46,7 @@ struct Simplex
 				break;
 			FOR(i, 0, m)
 				delta[i] = a[i][e] > EPS ? b[i] / a[i][e] : LINF;
-			int l = min_element(ALL(delta)) - delta.begin();
+			int l = min_element(all(delta)) - delta.begin();
 			if (delta[l] == LINF)
 			{
 				// unbounded
@@ -57,25 +57,25 @@ struct Simplex
 	}
 	void initializeSimplex(const vector<VD>& _a, const VD& _b, const VD& _c)
 	{
-		m = SZ(_b);
-		n = SZ(_c);
+		m = sz(_b);
+		n = sz(_c);
 		nonBasic.resize(n);
-		iota(ALL(nonBasic), 0);
+		iota(all(nonBasic), 0);
 		basic.resize(m);
-		iota(ALL(basic), n);
+		iota(all(basic), n);
 		a = _a;
 		b = _b;
 		c = _c;
 		v = 0;
-		int k = min_element(ALL(b)) - b.begin();
+		int k = min_element(all(b)) - b.begin();
 		if (b[k] > -EPS)
 			return;
-		nonBasic.PB(n);
-		iota(ALL(basic), n + 1);
+		nonBasic.pb(n);
+		iota(all(basic), n + 1);
 		FOR(i, 0, m)
-			a[i].PB(-1);
+			a[i].pb(-1);
 		c.assign(n, 0);
-		c.PB(-1);
+		c.pb(-1);
 		n++;
 		pivot(k, n - 1);
 		findOptimal();
@@ -84,7 +84,7 @@ struct Simplex
 			// infeasible
 			assert(false);
 		}
-		int l = find(ALL(basic), n - 1) - basic.begin();
+		int l = find(all(basic), n - 1) - basic.begin();
 		if (l != m)
 		{
 			int e = -1;
@@ -93,7 +93,7 @@ struct Simplex
 			pivot(l, e);
 		}
 		n--;
-		int p = find(ALL(nonBasic), n) - nonBasic.begin();
+		int p = find(all(nonBasic), n) - nonBasic.begin();
 		assert(p < n + 1);
 		nonBasic.erase(nonBasic.begin() + p);
 		FOR(i, 0, m)
@@ -121,13 +121,13 @@ struct Simplex
 	pair<VD, db> simplex(const vector<VD>& _a, const VD& _b, const VD& _c)
 	{
 		initializeSimplex(_a, _b, _c);
-		assert(SZ(a) == m);
+		assert(sz(a) == m);
 		FOR(i, 0, m)
-			assert(SZ(a[i]) == n);
-		assert(SZ(b) == m);
-		assert(SZ(c) == n);
-		assert(SZ(nonBasic) == n);
-		assert(SZ(basic) == m);
+			assert(sz(a[i]) == n);
+		assert(sz(b) == m);
+		assert(sz(c) == n);
+		assert(sz(nonBasic) == n);
+		assert(sz(basic) == m);
 		findOptimal();
 		VD x(n);
 		FOR(i, 0, m)

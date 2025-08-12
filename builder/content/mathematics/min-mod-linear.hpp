@@ -2,9 +2,9 @@
  * Description: Finds $\min \{(ax + b) \mod m \ | \ 0 \le x < n\}$.
  * Time: O(\log m).
  */
-int minModLinear(LL n, LL m, LL a, LL b)
+int minModLinear(ll n, ll m, ll a, ll b)
 {
-	LL res = m;
+	ll res = m;
 	while (n > 0)
 	{
 		a %= m;

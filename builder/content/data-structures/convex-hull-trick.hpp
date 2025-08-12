@@ -5,9 +5,9 @@
  
  struct Line
 {
-	LL a, b, xLast;
+	ll a, b, xLast;
 	Line() {}
-	Line(LL _a, LL _b): a(_a), b(_b) {}
+	Line(ll _a, ll _b): a(_a), b(_b) {}
 	bool operator<(const Line& l) const
 	{
 		return MP(a, b) < MP(l.a, l.b);
@@ -20,10 +20,10 @@
 	{
 		return a * x + b;
 	}
-	LL intersect(const Line& l) const
+	ll intersect(const Line& l) const
 	{
 		assert(a < l.a);
-		LL dA = l.a - a, dB = b - l.b, x = dB / dA;
+		ll dA = l.a - a, dB = b - l.b, x = dB / dA;
 		if (dB < 0 && dB % dA != 0)
 			x--;
 		return x;
@@ -34,7 +34,7 @@ struct ConvexHull: set<Line, less<>>
 {
 	bool needErase(iterator it, const Line& l)
 	{
-		LL x = it->xLast;
+		ll x = it->xLast;
 		if (it->getY(x) > l.getY(x))
 			return false;
 		if (it == begin())
@@ -42,13 +42,13 @@ struct ConvexHull: set<Line, less<>>
 		x = prev(it)->xLast + 1;
 		return it->getY(x) < l.getY(x);
 	}
-	void add(LL a, LL b)
+	void add(ll a, ll b)
 	{
 		Line l(a, b);
 		auto it = lower_bound(l);
 		if (it != end())
 		{
-			LL x = it == begin() ? -LINF : 
+			ll x = it == begin() ? -LINF : 
 					prev(it)->xLast;
 			if ((it == begin() 
 				|| prev(it)->getY(x) >= l.getY(x)) 
@@ -70,7 +70,7 @@ struct ConvexHull: set<Line, less<>>
 		l.xLast = it == end() ? LINF : l.intersect(*it);
 		insert(l);
  	}
-	LL getMaxY(LL p)
+	ll getMaxY(ll p)
 	{
 		return lower_bound(p)->getY(p);
 	}

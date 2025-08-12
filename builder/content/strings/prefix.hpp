@@ -1,6 +1,6 @@
 VI prefixFunction(const string& s)
 {
-	int n = SZ(s);
+	int n = sz(s);
 	VI p(n);
 	p[0] = 0;
 	FOR (i, 1, n)

@@ -9,12 +9,12 @@
  */
 pair<VI, vector<VI>> solveLinearSystem(vector<VI> a, VI b)
 {
-	int n = SZ(a), m = SZ(a[0]);
-	assert(SZ(b) == n);
+	int n = sz(a), m = sz(a[0]);
+	assert(sz(b) == n);
 	FOR(i, 0, n)
 	{
-		assert(SZ(a[i]) == m);
-		a[i].PB(b[i]);
+		assert(sz(a[i]) == m);
+		a[i].pb(b[i]);
 	}
 	int p = 0;
 	VI pivots;
@@ -38,7 +38,7 @@ pair<VI, vector<VI>> solveLinearSystem(vector<VI> a, VI b)
 			FOR(k, j, m + 1)
 				updSub(a[i][k], mult(c, a[p][k]));
 		}
-		pivots.PB(j);
+		pivots.pb(j);
 		p++;
 		if (p == n)
 			break;
@@ -58,7 +58,7 @@ pair<VI, vector<VI>> solveLinearSystem(vector<VI> a, VI b)
 	vector<VI> w;
 	FOR(q, 0, m)
 	{
-		if (find(ALL(pivots), q) != pivots.end())
+		if (find(all(pivots), q) != pivots.end())
 			continue;
 		VI d(m);
 		d[q] = 1;
@@ -69,7 +69,7 @@ pair<VI, vector<VI>> solveLinearSystem(vector<VI> a, VI b)
 				updSub(d[j], mult(a[i][k], d[k]));
 			d[j] = mult(d[j], binpow(a[i][j], mod - 2));
 		}
-		w.PB(d);
+		w.pb(d);
 	}
 	return {v, w};
 }

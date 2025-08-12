@@ -5,7 +5,7 @@
  * Then the algebraic structure whose addition is $\oplus$ and multiplication is $\otimes$ forms a field. Such a field is called \textbf{Nimber}.
  * Time: About 64 references to the precalculation table.
  */
-typedef unsigned long long ULL;
+typedef unsigned long long ull;
 
 const int S = 8;
 
@@ -18,19 +18,19 @@ void init()
 			small[i][j] = -1;
 }
 
-ULL nimProduct(ULL a, ULL b, int p = 64)
+ull nimProduct(ull a, ull b, int p = 64)
 {
 	if (min(a, b) <= 1)
 		return a * b;
 	if (p <= S && small[a][b] != -1)
 		return small[a][b];
 	p >>= 1;
-	ULL a1 = a >> p, a2 = a & ((1ULL << p) - 1);
-	ULL b1 = b >> p, b2 = b & ((1ULL << p) - 1);
-	ULL c = nimProduct(a1, b1, p);
-	ULL d = nimProduct(a2, b2, p);
-	ULL e = nimProduct(a1 ^ a2, b1 ^ b2, p);
-	ULL res = nimProduct(c, 1ULL << (p - 1), p) ^ d ^ ((d ^ e) << p);
+	ull a1 = a >> p, a2 = a & ((1ULL << p) - 1);
+	ull b1 = b >> p, b2 = b & ((1ULL << p) - 1);
+	ull c = nimProduct(a1, b1, p);
+	ull d = nimProduct(a2, b2, p);
+	ull e = nimProduct(a1 ^ a2, b1 ^ b2, p);
+	ull res = nimProduct(c, 1ULL << (p - 1), p) ^ d ^ ((d ^ e) << p);
 	if (p <= S / 2)
 		small[a][b] = res;
 	return res;

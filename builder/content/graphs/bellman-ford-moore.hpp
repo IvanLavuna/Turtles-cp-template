@@ -2,7 +2,7 @@
  * Description: Computes shortest paths from a single source vertex to all of the other vertices in a weighted directed graph.
  * Time: O(n m)
  */
-VL spfa(const vector<vector<pair<int, LL>>>& g, int n, int s)
+VL spfa(const vector<vector<pair<int, ll>>>& adj, int n, int s)
 {
 	VL dist(n, LINF);
 	dist[s] = 0;
@@ -19,9 +19,9 @@ VL spfa(const vector<vector<pair<int, LL>>>& g, int n, int s)
 		cnt[v]++;
 		negCycle |= cnt[v] > n;
 		inQueue[v] = false;
-		for (auto [to, w] : g[v])
+		for (auto [to, w] : adj[v])
 		{
-			LL newDist = dist[v] + w;
+			ll newDist = dist[v] + w;
 			if (newDist < dist[to])
 			{
 				dist[to] = newDist;

@@ -4,7 +4,7 @@
 
 vector<VI> manacher(const string& s)
 {
-	int n = SZ(s);
+	int n = sz(s);
 	vector<VI> d(2);
 	FOR (t, 0, 2)
 	{
@@ -27,4 +27,3 @@ vector<VI> manacher(const string& s)
 	}
 	return d;
 }
-

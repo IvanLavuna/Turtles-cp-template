@@ -4,7 +4,7 @@
  */
 VI deriv(const VI& a)
 {
-	int n = SZ(a);
+	int n = sz(a);
 	VI res(max(0, n - 1));
 	FOR(i, 0, n - 1)
 		res[i] = mult(a[i + 1], i + 1);
@@ -13,7 +13,7 @@ VI deriv(const VI& a)
 
 VI integr(const VI& a)
 {
-	int n = SZ(a);
+	int n = sz(a);
 	VI res(n + 1);
 	RFOR(i, n, 1)
 		res[i] = mult(a[i - 1], inv[i]);
@@ -23,7 +23,7 @@ VI integr(const VI& a)
 
 VI log(const VI& a, int n)
 {
-	assert(SZ(a) == n && a[0] == 1);
+	assert(sz(a) == n && a[0] == 1);
 	VI res = integr(mult(deriv(a), inverse(a, n)));
 	res.resize(n);
 	return res;

@@ -21,8 +21,8 @@ struct Graph
 	{
 		assert(0 <= u && u < n);
 		assert(0 <= v && v < n);
-		g[u].PB(v);
-		gr[v].PB(u);
+		g[u].pb(v);
+		gr[v].pb(u);
 	}
 	
 	int find(int v)
@@ -48,7 +48,7 @@ struct Graph
 	{
 		tin[v] = T++;
 		used[v] = true;
-		ord.PB(v);
+		ord.pb(v);
 		par[v] = pr;
 		for (auto to : g[v])
 		{
@@ -73,7 +73,7 @@ struct Graph
 	
 		dfs(s, -1);
 		
-		RFOR(i, SZ(ord), 0)
+		RFOR(i, sz(ord), 0)
 		{
 			int v = ord[i];
 			for (auto from : gr[v])
@@ -88,7 +88,7 @@ struct Graph
 				}
 			}
 			if (v != s) 
-				bkt[sdom[v]].PB(v);
+				bkt[sdom[v]].pb(v);
 			for (auto y : bkt[v])
 			{
 				int u = get(y);

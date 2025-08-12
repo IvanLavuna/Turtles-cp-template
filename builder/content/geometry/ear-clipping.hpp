@@ -4,14 +4,14 @@
  **/
 vector<tuple<int, int, int>> earClipping(const vector<Pt>& v)
 {
-	int n = SZ(v);
+	int n = sz(v);
 	vector<tuple<int, int, int>> res;
 	VI indices(n), ear(n), reflex(n);
-	iota(ALL(indices), 0);
+	iota(all(indices), 0);
 	auto updReflexStatus = [&](int i)
 	{
-		int sz = SZ(indices),
-			pos = find(ALL(indices), i) - indices.begin();
+		int sz = sz(indices),
+			pos = find(all(indices), i) - indices.begin();
 		int iPrev = indices[(pos + sz - 1) % sz],
 			iNext = indices[(pos + 1) % sz];
 		reflex[i] = orient(v[iPrev], v[i], v[iNext]) < 0;
@@ -23,8 +23,8 @@ vector<tuple<int, int, int>> earClipping(const vector<Pt>& v)
 			ear[i] = 0;
 			return;
 		}
-		int sz = SZ(indices),
-			pos = find(ALL(indices), i) - indices.begin();
+		int sz = sz(indices),
+			pos = find(all(indices), i) - indices.begin();
 		int iPrev = indices[(pos + sz - 1) % sz],
 			iNext = indices[(pos + 1) % sz];
 		ear[i] = 1;
@@ -48,7 +48,7 @@ vector<tuple<int, int, int>> earClipping(const vector<Pt>& v)
 		while (!ear[indices[i]])
 			i++;
 		int iPrev = indices[(i + sz - 1) % sz], iNext = indices[(i + 1) % sz];
-		res.PB({iPrev, indices[i], iNext});
+		res.pb({iPrev, indices[i], iNext});
 		indices.erase(indices.begin() + i);
 		updReflexStatus(iPrev);
 		updReflexStatus(iNext);

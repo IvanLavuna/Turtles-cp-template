@@ -7,7 +7,7 @@ struct Graph
 	struct Edge
 	{
 		int from, to;
-		LL cap, flow;
+		ll cap, flow;
 	};
 	
 	int n;
@@ -16,19 +16,19 @@ struct Graph
 	VI d, p;
 	
 	Graph(int _n): n(_n), g(n), d(n), p(n) {}
-	void addEdge(int from, int to, LL cap)
+	void addEdge(int from, int to, ll cap)
 	{
 		assert(0 <= from && from < n);
 		assert(0 <= to && to < n);
 		assert(0 <= cap);
-		g[from].PB(SZ(edges));
-		edges.PB({from, to, cap, 0});
-		g[to].PB(SZ(edges));
-		edges.PB({to, from, 0, 0});
+		g[from].pb(sz(edges));
+		edges.pb({from, to, cap, 0});
+		g[to].pb(sz(edges));
+		edges.pb({to, from, 0, 0});
 	}
 	int bfs(int s, int t)
 	{
-		fill(ALL(d), -1);
+		fill(all(d), -1);
 		d[s] = 0;
 		queue<int> q;
 		q.push(s);
@@ -48,17 +48,17 @@ struct Graph
 		}
 		return d[t];
 	}
-	LL dfs(int v, int t, LL flow)
+	ll dfs(int v, int t, ll flow)
 	{
 		if (v == t || flow == 0)
 			return flow;
-		for (; p[v] < SZ(g[v]); p[v]++)
+		for (; p[v] < sz(g[v]); p[v]++)
 		{
 			int e = g[v][p[v]], to = edges[e].to;
-			LL c = edges[e].cap, f = edges[e].flow;
+			ll c = edges[e].cap, f = edges[e].flow;
 			if (f < c && (to == t || d[to] == d[v] + 1))
 			{
-				LL push = dfs(to, t, min(flow, c - f));
+				ll push = dfs(to, t, min(flow, c - f));
 				if (push > 0)
 				{
 					edges[e].flow += push;
@@ -69,18 +69,18 @@ struct Graph
 		}
 		return 0;
 	}
-	LL flow(int s, int t)
+	ll flow(int s, int t)
 	{
 		assert(0 <= s && s < n);
 		assert(0 <= t && t < n);
 		assert(s != t);
-		LL flow = 0;
+		ll flow = 0;
 		while (bfs(s, t) != -1)
 		{
-			fill(ALL(p), 0);
+			fill(all(p), 0);
 			while (true)
 			{
-				LL f = dfs(s, t, LINF);
+				ll f = dfs(s, t, LINF);
 				if (f == 0)
 					break;
 				flow += f;
