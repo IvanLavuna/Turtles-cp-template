@@ -59,16 +59,16 @@ VI upperFace, queryAns;
 
 void addVertex(const Pt& p)
 {
-	vertices.PB({p, SZ(vertices)});
+	vertices.pb({p, SZ(vertices)});
 }
 void addEdge(int i, int j, const Line& l)
 {
-	assert(0 <= i && i < SZ(vertices));
-	assert(0 <= j && j < SZ(vertices));
+	assert(0 <= i && i < sz(vertices));
+	assert(0 <= j && j < sz(vertices));
 	assert(i != j);
 	assert(vertices[i].index == i);
 	assert(vertices[j].index == j);
-	edges.PB({i, j, l});
+	edges.pb({i, j, l});
 }
 void addEdge(int i, int j)
 {
@@ -76,7 +76,7 @@ void addEdge(int i, int j)
 }
 void addQueryPoint(const Pt& p)
 {
-	queryPoints.PB({p, SZ(queryPoints)});
+	queryPoints.pb({p, SZ(queryPoints)});
 }
 void findFaces()
 {
@@ -97,11 +97,11 @@ void findFaces()
 			l.n = l.n * (-1);
 			l.c *= -1;
 		}
-		edgesL[j].PB(k);
-		edgesR[i].PB(k);
+		edgesL[j].pb(k);
+		edgesR[i].pb(k);
 	}
-	sort(ALL(vertices));
-	sort(ALL(queryPoints));
+	sort(all(vertices));
+	sort(all(queryPoints));
 	// when choosing INF, remember that we rotate the plane
 	addVertex({-INF, INF});
 	addVertex({INF, INF});
@@ -128,7 +128,7 @@ void findFaces()
 		int upper = -1, lower = -1;
 		if (!edgesL[i].empty())
 		{
-			sort(ALL(edgesL[i]), comparator);
+			sort(all(edgesL[i]), comparator);
 			auto it	= s.lower_bound(edgesL[i][0]);
 			lower = edgesL[i][0];
 			for (int e : edgesL[i])
@@ -143,7 +143,7 @@ void findFaces()
 		}
 		if (!edgesR[i].empty())
 		{
-			sort(ALL(edgesR[i]), comparator);
+			sort(all(edgesR[i]), comparator);
 			if (upper == -1)
 			{
 				upper =	*s.lower_bound(edgesR[i][0]);
@@ -167,7 +167,7 @@ void findFaces()
 		}
 	}
 }
-PII getIncidentFaces(int i)
+pii getIncidentFaces(int i)
 {
 	return {dsu.find(i), dsu.find(upperFace[i])};
 }

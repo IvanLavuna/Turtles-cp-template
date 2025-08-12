@@ -20,7 +20,7 @@ vector<pair<Pt, Pt>> tangents(const Pt& o1,	db r1,
 	for (db sign : {-1, 1})
 	{
 		Pt v = (d * dr + perp(d) * sqrt(h2)	* sign) / d2;
-		res.PB({o1 + v * r1, o2 + v * r2});
+		res.pb({o1 + v * r1, o2 + v * r2});
 	}
 	return res;
 }

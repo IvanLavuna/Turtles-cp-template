@@ -72,7 +72,7 @@ bool half(const Pt& p)
 }
 void polarSortAround(const Pt& o, vector<Pt>& v)
 {
-	sort(ALL(v), [o](Pt p, Pt q)
+	sort(all(v), [o](Pt p, Pt q)
 	{
 		p = p - o;
 		q = q - o;
