@@ -4,7 +4,7 @@
  */
 VI multipointEval(const VI& p, const VI& x)
 {
-	int n = SZ(x);
+	int n = sz(x);
 	vector<VI> t;
 	int _n = 1;
 	while (_n < 2 * n)

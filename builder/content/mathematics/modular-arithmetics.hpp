@@ -26,10 +26,10 @@ void updSub(int& a, int b)
 
 int mult(int a, int b)
 {
-	return (LL)a * b % mod;
+	return (ll)a * b % mod;
 }
 
-int binpow(int a, LL n)
+int binpow(int a, ll n)
 {
 	int res = 1;
 	while (n)

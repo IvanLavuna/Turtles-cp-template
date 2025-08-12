@@ -8,7 +8,7 @@
  */
 VI add(const VI& a, const VI& b)
 {
-	int n = SZ(a), m = SZ(b);
+	int n = sz(a), m = sz(b);
 	VI c(max(n, m));
 	FOR(i, 0, n)
 		updAdd(c[i], a[i]);
@@ -20,14 +20,14 @@ VI add(const VI& a, const VI& b)
 int evalPoly(const VI& p, int x)
 {
 	int res = 0;
-	RFOR(i, SZ(p), 0)
+	RFOR(i, sz(p), 0)
 		res = add(mult(res, x), p[i]);
 	return res;
 }
 
 VI mult(const vector<VI>& a, const VI& b)
 {
-	int n = SZ(a);
+	int n = sz(a);
 	VI c(n);
 	FOR(i, 0, n)
 		FOR(j, 0, n)
@@ -37,7 +37,7 @@ VI mult(const vector<VI>& a, const VI& b)
 
 vector<VI> mult(const vector<VI>& a, const vector<VI>& b)
 {
-	int n = SZ(a);
+	int n = sz(a);
 	vector<VI> c(n, VI(n));
 	FOR(i, 0, n)
 		FOR(k, 0, n)
@@ -50,7 +50,7 @@ typedef vector<vector<VI>> PolyMatr;
 
 PolyMatr mult(const PolyMatr& a, const PolyMatr& b)
 {
-	int n = SZ(a);
+	int n = sz(a);
 	PolyMatr c(n, vector<VI>(n));
 	FOR(i, 0, n)
 		FOR(k, 0, n)
@@ -61,18 +61,18 @@ PolyMatr mult(const PolyMatr& a, const PolyMatr& b)
 
 int findNthOfPRecursive(const vector<VI>& p, VI a, int n)
 {
-	int d = SZ(p) - 1;
-	assert(SZ(a) == d);
+	int d = sz(p) - 1;
+	assert(sz(a) == d);
 	if (n < d)
 		return a[n];
 	auto polyMatrProd = [](const PolyMatr& polyMatr, int k, VI u)
 	{
-		int h = SZ(polyMatr);
+		int h = sz(polyMatr);
 		
 		auto shiftEvalMatrs =
 			[&](const vector<vector<VI>>& matrices, int c, int m)
 		{
-			int cnt = SZ(matrices);
+			int cnt = sz(matrices);
 			vector<vector<VI>> res(m, vector<VI>(h, VI(h)));
 			FOR(i, 0, h)
 			{
@@ -92,9 +92,9 @@ int findNthOfPRecursive(const vector<VI>& p, VI a, int n)
 		int m = 0;
 		FOR(i, 0, h)
 			FOR(j, 0, h)
-				m = max(m, SZ(polyMatr[i][j]) - 1);
+				m = max(m, sz(polyMatr[i][j]) - 1);
 		int s = 1;
-		while ((LL)m * s * s < k)
+		while ((ll)m * s * s < k)
 			s *= 2;
 		int invS = binpow(s, mod - 2);
 		vector<vector<VI>> matrices(m + 1, vector<VI>(h, VI(h)));
@@ -106,10 +106,10 @@ int findNthOfPRecursive(const vector<VI>& p, VI a, int n)
 		}
 		for (int r = 1; r < s; r *= 2)
 		{
-			auto sh = shiftEvalMatrs(matrices, r * m + 1, SZ(matrices) - 1);
-			matrices.insert(matrices.end(), ALL(sh));
-			sh = shiftEvalMatrs(matrices, mult(r, invS), SZ(matrices));
-			FOR(l, 0, SZ(matrices))
+			auto sh = shiftEvalMatrs(matrices, r * m + 1, sz(matrices) - 1);
+			matrices.insert(matrices.end(), all(sh));
+			sh = shiftEvalMatrs(matrices, mult(r, invS), sz(matrices));
+			FOR(l, 0, sz(matrices))
 				matrices[l] = mult(sh[l], matrices[l]);
 		}
 		int l = 0;

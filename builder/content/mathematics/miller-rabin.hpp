@@ -4,17 +4,17 @@
  **/
 
 VI candidates = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 47};
-bool millerRabin(LL n)
+bool millerRabin(ll n)
 {
 	if (n == 1)
 		return false;
 	if (n == 2 || n == 3)
 		return true;
-	LL d = n - 1;
+	ll d = n - 1;
 	int s = __builtin_ctzll(d);
 	d >>= s;
 	
-	for (LL b : candidates)
+	for (ll b : candidates)
 	{
 		if (b >= n)
 			break;

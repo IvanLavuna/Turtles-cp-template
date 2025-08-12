@@ -7,7 +7,7 @@ VI berlekampMassey(const VI& a)
 {
 	VI c = {1}, bp = {1};
 	int l = 0, b = 1, x = 1;
-	FOR(j, 0, SZ(a))
+	FOR(j, 0, sz(a))
 	{
 		assert(SZ(c) == l + 1);
 		int d = a[j];

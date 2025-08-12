@@ -10,8 +10,8 @@
  */
 int bostanMori(const VI& c, VI a, LL n)
 {
-	int k = SZ(c);
-	assert(SZ(a) == k);
+	int k = sz(c);
+	assert(sz(a) == k);
 	VI q(k + 1);
 	q[0] = 1;
 	FOR(i, 0, k) 

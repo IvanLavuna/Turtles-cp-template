@@ -2,13 +2,13 @@
  * Description: Code finds a specific structure of the answer.
  * Time: O(n^2) 
  */
-LL chinese(VI m, VI p)
+ll chinese(VI m, VI p)
 {
-	int n = SZ(m);
+	int n = sz(m);
 	FOR(i, 1, n)
 	{
-		LL a = 1;
-		LL b = 0;
+		ll a = 1;
+		ll b = 0;
 		RFOR(j, i, 0)
 		{
 			b = (b * p[j] + m[j]) % p[i];
@@ -30,7 +30,7 @@ LL chinese(VI m, VI p)
 		p[i] = c;
 	}
 	//specific structure where gcd(pi, pj) = 1
-	LL res = m[n - 1];
+	ll res = m[n - 1];
 	RFOR(i, n - 1, 0)
 		res = res * p[i] + m[i];
 	return res;

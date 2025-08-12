@@ -4,26 +4,26 @@
  */
 void removeLeadingZeros(VI& a)
 {
-	while(SZ(a) > 0 && a.back() == 0)
+	while(sz(a) > 0 && a.back() == 0)
 		a.pop_back();
 }
 pair<VI, VI> divide(VI a, VI b)
 {
 	removeLeadingZeros(a);
 	removeLeadingZeros(b);
-	int n = SZ(a), m = SZ(b);
+	int n = sz(a), m = sz(b);
 	assert(m > 0);
 	if(m > n)
 		return {{}, a};
-	reverse(ALL(a));
-	reverse(ALL(b));
+	reverse(all(a));
+	reverse(all(b));
 	VI q = b;
 	q.resize(n - m + 1);
 	q = mult(a, inverse(q, n - m + 1));
 	q.resize(n - m + 1);
-	reverse(ALL(a));
-	reverse(ALL(b));
-	reverse(ALL(q));
+	reverse(all(a));
+	reverse(all(b));
+	reverse(all(q));
 	VI r = mult(b, q);
 	FOR(i, 0, n)
 		r[i] = sub(a[i], r[i]);

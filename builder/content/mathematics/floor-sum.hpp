@@ -2,9 +2,9 @@
  * Description: Computes $\sum_{i=0}^{n-1} \left\lfloor \frac{a \cdot i + b}{m} \right\rfloor$.
  * Time: O(\log m).
  */
-LL floorSum(LL n, LL m, LL a, LL b)
+ll floorSum(ll n, ll m, ll a, ll b)
 {
-	LL ans = 0;
+	ll ans = 0;
 	while (true)
 	{
 		ans += (a / m) * n * (n - 1) / 2 + (b / m) * n;
@@ -12,7 +12,7 @@ LL floorSum(LL n, LL m, LL a, LL b)
 		b %= m;
 		if (a == 0)
 			return ans;
-		LL k = (a * (n - 1) + b) / m;
+		ll k = (a * (n - 1) + b) / m;
 		b = a * n - m * k + b;
 		n = k;
 		swap(a, m);

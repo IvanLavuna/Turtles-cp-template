@@ -17,8 +17,8 @@ void init()
 void fft(VI& a, bool inverse)
 {
 	const int IGEN = binpow(GEN, mod - 2);
-	int lg = __builtin_ctz(SZ(a));
-	FOR(i, 0, SZ(a))
+	int lg = __builtin_ctz(sz(a));
+	FOR(i, 0, sz(a))
 	{
 		int k = 0;
 		FOR(j, 0, lg)
@@ -26,11 +26,11 @@ void fft(VI& a, bool inverse)
 		if(i < k)
 			swap(a[i], a[k]);
 	}
-	for(int len = 2; len <= SZ(a); len *= 2)
+	for(int len = 2; len <= sz(a); len *= 2)
 	{
 		// int diff = inv ? LEN - LEN / len : LEN / len;
 		int ml = binpow(inverse ? IGEN : GEN, LEN / len);
-		for(int i = 0; i < SZ(a); i += len)
+		for(int i = 0; i < sz(a); i += len)
 		{
 			// int pos = 0;
 			int pw = 1;
@@ -47,8 +47,8 @@ void fft(VI& a, bool inverse)
 	}
 	if (inverse)
 	{
-		int m = binpow(SZ(a), mod - 2);
-		FOR(i, 0, SZ(a))
+		int m = binpow(sz(a), mod - 2);
+		FOR(i, 0, sz(a))
 			// a[i] /= SZ(a);
 			a[i] = mult(a[i], m); 
 	}
@@ -56,7 +56,7 @@ void fft(VI& a, bool inverse)
 
 VI mult(VI a, VI b)
 {
-	int n = SZ(a), m = SZ(b);
+	int n = sz(a), m = sz(b);
 	if (n == 0 || m == 0)
 		return {};
 	int sz = 1, szRes = n + m - 1;
@@ -75,4 +75,3 @@ VI mult(VI a, VI b)
 	a.resize(szRes);
 	return a;
 }
-

@@ -4,7 +4,7 @@
  */
 VI exp(const VI& a, int n)
 {
-	assert(SZ(a) == n && a[0] == 0);
+	assert(sz(a) == n && a[0] == 0);
 	VI q = {1};
 	for (int k = 2; k <= 2 * n; k *= 2)
 	{

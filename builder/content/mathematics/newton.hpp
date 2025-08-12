@@ -10,7 +10,7 @@ VI newton(VI a, int k)
 	int pw = 1;
 	while(pw <= k)
 	{
-		assert(SZ(Qk) == pw);
+		assert(sz(Qk) == pw);
 		pw *= 2;
 		
 		VI F1(pw); 		

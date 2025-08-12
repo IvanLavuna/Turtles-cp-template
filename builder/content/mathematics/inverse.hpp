@@ -4,12 +4,12 @@
  */
 VI inverse(const VI& a, int n)
 {
-	assert(SZ(a) == n && a[0] != 0);
+	assert(sz(a) == n && a[0] != 0);
 	if(n == 1)
 		return {binpow(a[0], mod - 2)};
 	
 	VI ra = a;
-	FOR(i, 0, SZ(ra))
+	FOR(i, 0, sz(ra))
 		if(i & 1)
 			ra[i] = sub(0, ra[i]);
 	
