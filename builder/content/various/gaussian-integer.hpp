@@ -4,7 +4,7 @@
  * \textbf{Facts}: Primes of the form $4n + 3$ are Gaussian primes.
  * Uniqueness of prime factorization.
  */
-LL closest(LL u, LL d)
+ll closest(ll u, ll d)
 {
 	if(d < 0)
 		return closest(-u, -d);
@@ -12,17 +12,17 @@ LL closest(LL u, LL d)
 		return -closest(-u, d);
 	return (2 * u + d) / (2 * d);
 }
-struct num : complex<LL>
+struct num : complex<ll>
 {	
-	num(LL a, LL b = 0) : complex(a, b) {}
+	num(ll a, ll b = 0) : complex(a, b) {}
 	num(complex a) : complex(a) {}
 	num operator/ (num x)
 	{
 		num prod = *this * conj(x);
-		LL D = (x * conj(x)).real();
+		ll D = (x * conj(x)).real();
 		
-		LL m = closest(prod.real(), D);
-		LL n = closest(prod.imag(), D);
+		ll m = closest(prod.real(), D);
+		ll n = closest(prod.imag(), D);
 	
 		return num(m, n);
 	}
