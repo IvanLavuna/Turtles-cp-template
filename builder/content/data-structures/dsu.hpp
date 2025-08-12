@@ -7,7 +7,7 @@ struct DSU
 	{
 		n = _n;
 		p.resize(n);
-		iota(ALL(p), 0);
+		iota(all(p), 0);
 		sz.assign(n, 1);
 	}
 	int find(int v)

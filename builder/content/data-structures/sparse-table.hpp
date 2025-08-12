@@ -9,15 +9,15 @@ struct SparseTable
 	
 	void push_back(int v)
 	{
-		int i = SZ(t[0]);
-		t[0].PB(v);
+		int i = sz(t[0]);
+		t[0].pb(v);
 		FOR (j, 0, LOG - 1) 
-			t[j + 1].PB(min(t[j][i], t[j][max(0, i - (1 << j))]));
+			t[j + 1].pb(min(t[j][i], t[j][max(0, i - (1 << j))]));
 	}
 	// [l, r)
 	int query(int l, int r)
 	{
-		assert(l < r && r <= SZ(t[0]));
+		assert(l < r && r <= sz(t[0]));
 		int i = 31 - __builtin_clz(r - l);
 		return min(t[i][r - 1], t[i][l + (1 << i) - 1]);
 	}

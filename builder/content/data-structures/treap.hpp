@@ -44,8 +44,8 @@ struct Treap
 	}
 	int newNode(int val)
 	{
-		t.PB({val});
-		return SZ(t) - 1;
+		t.pb({val});
+		return sz(t) - 1;
 	}
 	void upd(int v)
 	{
@@ -72,13 +72,13 @@ struct Treap
 		swap(t[v].l, t[v].r);
 		t[v].rev = 0;
 	}
-	PII split(int v, int cnt)
+	pii split(int v, int cnt)
 	{
 		if (v == -1) 
 			return {-1, -1};
 		push(v);
 		int left = getCnt(t[v].l);
-		PII res;
+		pii res;
 		// elements a[v].x == val will be in right part
 		// if (val <= a[v].x)
 		if (cnt <= left)

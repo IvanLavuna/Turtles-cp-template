@@ -1,6 +1,6 @@
-int lowerBound(LL x)
+int lowerBound(ll x)
 {
-	LL sum = 0;
+	ll sum = 0;
 	int i = -1;
 	int lg = 31 - __builtin_clz(n);
 	while (lg >= 0)

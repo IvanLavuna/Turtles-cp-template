@@ -5,14 +5,14 @@ struct Fenwick
 	
 	Fenwick(int _n = 0): n(_n), t(n) {}
 	
-	void upd(int i, LL x)
+	void upd(int i, ll x)
 	{
 		for (; i < n; i |= i + 1)
 			t[i] += x;
 	}
-	LL query(int i)
+	ll query(int i)
 	{
-		LL ans = 0;
+		ll ans = 0;
 		for (; i >= 0; i = (i & (i + 1)) - 1)
 			ans += t[i];
 		return ans;
