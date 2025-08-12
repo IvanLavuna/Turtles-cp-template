@@ -1,3 +1,4 @@
+
 /**
  * Description: Finds an Eulerian path in a directed or undirected graph.
  * $g$ is a graph with $n$ vertices. $g[u]$ is a vector of pairs $(v, \text{edge\_id})$. $m$ is the number of edges in the graph.
@@ -7,9 +8,9 @@
  * If you need an Eulerian cycle, check vertices[0] = vertices.back().
  */
 // 528807 for undirected
-tuple<bool, int, int> checkDirected(vector<vector<PII>>& g)
+tuple<bool, int, int> checkDirected(vector<vector<pii>>& g)
 {
-	int n = SZ(g), v1 = -1, v2 = -1;
+	int n = sz(g), v1 = -1, v2 = -1;
 	bool bad = false;
 	VI degIn(n);
 	FOR(u, 0, n)
@@ -17,13 +18,13 @@ tuple<bool, int, int> checkDirected(vector<vector<PII>>& g)
 			degIn[v]++;
 	FOR(u, 0, n)
 	{
-		bad |= abs(degIn[u] - SZ(g[u])) > 1;
-		if (degIn[u] < SZ(g[u]))
+		bad |= abs(degIn[u] - sz(g[u])) > 1;
+		if (degIn[u] < sz(g[u]))
 		{
 			bad |= v2 != -1;
 			v2 = u;
 		}
-		else if (degIn[u] > SZ(g[u]))
+		else if (degIn[u] > sz(g[u]))
 		{
 			bad |= v1 != -1;
 			v1 = u;
@@ -32,13 +33,13 @@ tuple<bool, int, int> checkDirected(vector<vector<PII>>& g)
 	return {bad, v1, v2};
 }
 
-/*tuple<bool, int, int> checkUndirected(vector<vector<PII>>& g)
+/*tuple<bool, int, int> checkUndirected(vector<vector<pii>>& g)
 {
-	int n = SZ(g), v1 = -1, v2 = -1;
+	int n = sz(g), v1 = -1, v2 = -1;
 	bool bad = false;
 	FOR(u, 0, n)
 	{
-		if (SZ(g[u]) & 1)
+		if (sz(g[u]) & 1)
 		{
 			bad |= v2 != -1;
 			if (v1 == -1)
@@ -50,7 +51,7 @@ tuple<bool, int, int> checkDirected(vector<vector<PII>>& g)
 	return {bad, v1, v2};
 }*/
 
-pair<VI, VI> hierholzer(vector<vector<PII>> g, int m)
+pair<VI, VI> hierholzer(vector<vector<pii>> g, int m)
 {
 	// checkUndirected if undirected
 	auto [bad, v1, v2] = checkDirected(g);
@@ -58,17 +59,17 @@ pair<VI, VI> hierholzer(vector<vector<PII>> g, int m)
 		return {{-1}, {-1}};
 	if (v1 != -1)
 	{
-		g[v1].PB({v2, m});
+		g[v1].pb({v2, m});
 		// uncomment if undirected
 		//g[v2].PB({v1, m});
 		m++;
 	}
-	deque<PII> d;
+	deque<pii> d;
 	VI used(m);
 	int v = 0, k = 0;
 	while (m > 0 && g[v].empty())
 		v++;
-	while (SZ(d) < m)
+	while (sz(d) < m)
 	{		
 		while (k < m)
 		{
@@ -83,7 +84,7 @@ pair<VI, VI> hierholzer(vector<vector<PII>> g, int m)
 		}
 		if (k == m)
 			return {{-1}, {-1}};
-		d.PB(g[v].back());
+		d.pb(g[v].back());
 		used[g[v].back().S] = true;
 		g[v].pop_back();
 		v = d.back().F;
@@ -97,8 +98,8 @@ pair<VI, VI> hierholzer(vector<vector<PII>> g, int m)
 	VI vertices = {v}, edges;
 	for (auto [u, e] : d)
 	{
-		vertices.PB(u);
-		edges.PB(e);
+		vertices.pb(u);
+		edges.pb(e);
 	}
 	if (v1 != -1)
 	{

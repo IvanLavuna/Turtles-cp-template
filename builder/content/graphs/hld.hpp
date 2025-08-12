@@ -32,7 +32,7 @@ void dfsHLD(int v, int par, int tp)
 {
 	tin[v] = t++;
 	top[v] = tp;
-	FOR (i, 0, SZ(g[v]))
+	FOR (i, 0, sz(g[v]))
 	{
 		int to = g[v][i];
 		if (to == par)
@@ -44,9 +44,9 @@ void dfsHLD(int v, int par, int tp)
 	}
 	tout[v] = t - 1;
 }
-LL get(int u, int v)
+ll get(int u, int v)
 {
-	LL res = 0;
+	ll res = 0;
 	while(true)
 	{
 		int tu = top[u];

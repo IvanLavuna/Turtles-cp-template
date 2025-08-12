@@ -4,22 +4,22 @@
  * Time: O(\sum_{uv \in E} \min(\deg(u), \deg(v))) = O(m \cdot \sqrt{m})
  */
 
-LL rect(int n)
+ll rect(int n)
 {
-	LL cnt4 = 0;
-	vector<PII> d(n);
-	FOR (v, 0, n) d[v] = MP(SZ(g[v]), v);
+	ll cnt4 = 0;
+	vector<pii> d(n);
+	FOR (v, 0, n) d[v] = MP(sz(adj[v]), v);
 	VI L(n);
 	FOR (v, 0, n)
 	{
-		for (auto u : g[v])
+		for (auto u : adj[v])
 			if (d[u] < d[v])
-				for (auto y : g[u])
+				for (auto y : adj[u])
 					if (d[y] < d[v])
 						cnt4 += L[y], L[y]++;
-		for (auto u : g[v])
+		for (auto u : adj[v])
 			if (d[u] < d[v])
-				for (auto y : g[u])
+				for (auto y : adj[u])
 					L[y] = 0;
 	}
 	return cnt4;

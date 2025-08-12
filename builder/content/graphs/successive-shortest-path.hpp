@@ -1,3 +1,4 @@
+
 /**
  * Description: Finds the minimum cost maximum flow in a network.
  * If the network contains negative-cost edges, uncomment \texttt{initPotentials}.
@@ -9,7 +10,7 @@ struct Graph
 	{
 		int from, to;
 		int cap, flow;
-		LL cost;
+		ll cost;
 	};
 	
 	int n;
@@ -20,44 +21,44 @@ struct Graph
 	
 	Graph(int _n = 0): n(_n), g(n), pi(n), d(n), pred(n) {}
 	
-	void addEdge(int from, int to, int cap, LL cost)
+	void addEdge(int from, int to, int cap, ll cost)
 	{
 		assert(0 <= from && from < n);
 		assert(0 <= to && to < n);
 		assert(0 <= cap);
-		g[from].PB(SZ(edges));
-		edges.PB({from, to, cap, 0, cost});
-		g[to].PB(SZ(edges));
-		edges.PB({to, from, 0, 0, -cost});
+		g[from].pb(sz(edges));
+		edges.pb({from, to, cap, 0, cost});
+		g[to].pb(sz(edges));
+		edges.pb({to, from, 0, 0, -cost});
 	}
 	/*void initPotentials(int s)
 	{
-		vector<vector<pair<int, LL>>> gr(n);
+		vector<vector<pair<int, ll>>> gr(n);
 		FOR(v, 0, n)
 		{
 			for (int e : g[v])
 			{
 				const Edge& edge = edges[e];
 				if (edge.flow < edge.cap)
-					gr[v].PB({edge.to, edge.cost});
+					gr[v].pb({edge.to, edge.cost});
 			}
 		}
 		pi = spfa(gr, n, s);
 	}*/
-	pair<int, LL> flow(int s, int t)
+	pair<int, ll> flow(int s, int t)
 	{
 		assert(0 <= s && s < n);
 		assert(0 <= t && t < n);
 		assert(s != t);
 		//initPotentials(s);
 		int flow = 0;
-		LL cost = 0;
+		ll cost = 0;
 		for (int it = 0; ; it++)
 		{
-			fill(ALL(d), LINF);
-			fill(ALL(pred), -1);
+			fill(all(d), LINF);
+			fill(all(pred), -1);
 			d[s] = 0;
-			priority_queue<pair<LL, int>> q;
+			priority_queue<pair<ll, int>> q;
 			q.push({0, s});
 			while (!q.empty())
 			{
@@ -72,7 +73,7 @@ struct Graph
 					if (edges[i].flow == edges[i].cap)
 						continue;
 					int to = edges[i].to;
-					LL nd = d[v] + edges[i].cost + pi[v] - pi[to];
+					ll nd = d[v] + edges[i].cost + pi[v] - pi[to];
 					if (nd < d[to])
 					{
 						d[to] = nd;

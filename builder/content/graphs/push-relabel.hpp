@@ -3,12 +3,12 @@ struct Graph
 	struct Edge
 	{
 		int from, to;
-		LL cap, flow;
+		ll cap, flow;
 	};
 	int n;
 	vector<Edge> edges;
 	vector<VI> g;
-	vector<LL> e;
+	vector<ll> e;
 	VI h, current;
 	queue<int> q;
 	void init(int _n)
@@ -21,15 +21,15 @@ struct Graph
 		h.assign(n, 0);
 		current.assign(n, 0);
 	}
-	void addEdge(int from, int to, LL cap)
+	void addEdge(int from, int to, ll cap)
 	{
 		assert(0 <= from && from < n);
 		assert(0 <= to && to < n);
 		assert(0 <= cap);
-		g[from].PB(SZ(edges));
-		edges.PB({from, to, cap, 0});
-		g[to].PB(SZ(edges));
-		edges.PB({to, from, 0, 0});
+		g[from].pb(sz(edges));
+		edges.pb({from, to, cap, 0});
+		g[to].pb(sz(edges));
+		edges.pb({to, from, 0, 0});
 	}
 	void initializePreflow(int s)
 	{
@@ -71,7 +71,7 @@ struct Graph
 	{
 		while (e[u] > 0)
 		{
-			for (; e[u] > 0 && current[u] < SZ(g[u]); current[u]++)
+			for (; e[u] > 0 && current[u] < sz(g[u]); current[u]++)
 			{
 				int i = g[u][current[u]];
 				const Edge& edge = edges[i];
@@ -85,7 +85,7 @@ struct Graph
 			}
 		}
 	}
-	LL flow(int s, int t)
+	ll flow(int s, int t)
 	{
 		assert(0 <= s && s < n);
 		assert(0 <= t && t < n);

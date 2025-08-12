@@ -20,7 +20,7 @@ struct Graph
 		assert(0 <= from && from < szL);
 		assert(0 <= to && to < szR);
 		
-		g[from].PB(to);
+		g[from].pb(to);
 	}
 	
 	int iter;
@@ -28,7 +28,7 @@ struct Graph
 	{
 		if (usedL[v] == iter) return false;
 		usedL[v] = iter;
-		shuffle(ALL(g[v]), rng);
+		shuffle(all(g[v]), rng);
 		for(int to : g[v])
 		{
 			if (mateForR[to] == -1)
@@ -51,9 +51,9 @@ struct Graph
 	}
 	int doKuhn()
 	{
-		fill(ALL(mateForR), -1);
-		fill(ALL(mateForL), -1);
-		fill(ALL(usedL), -1);
+		fill(all(mateForR), -1);
+		fill(all(mateForL), -1);
+		fill(all(usedL), -1);
 		
 		int res = 0;
 		iter = 0;

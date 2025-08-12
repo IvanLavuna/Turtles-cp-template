@@ -8,9 +8,9 @@ int triangles(int n)
 {
 	vector<VI> ng(n);
 	FOR (v, 0, n)
-		for (auto u : g[v])
-			if (MP(SZ(g[v]), v) < MP(SZ(g[u]), u))
-				ng[v].PB(u);
+		for (auto u : adj[v])
+			if (MP(sz(adj[v]), v) < MP(sz(adj[u]), u))
+				ng[v].pb(u);
 	int cnt = 0;
 	VI used(n, 0);
 	FOR (v, 0, n)
