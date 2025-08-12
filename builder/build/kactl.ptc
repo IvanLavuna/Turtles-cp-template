@@ -9,4 +9,10 @@
 \ttl@starttoc {chapters@2}
 \contentsline {section}{\texttt {dsu.hpp}\hspace {0.2em}}{2}{chapter.2}%
 \contentsline {section}{\texttt {fenwick.hpp}\hspace {0.2em}}{2}{lstnumber.2.1.31}%
+\contentsline {section}{\texttt {fenwick-lower-bound.hpp}\hspace {0.2em}}{2}{lstnumber.2.2.20}%
+\contentsline {section}{\texttt {treap.hpp}\hspace {0.2em}}{2}{section*.6}%
+\contentsline {section}{\texttt {lct.hpp}\hspace {0.2em}}{3}{lstnumber.2.4.144}%
+\contentsline {section}{\texttt {ordered-set.hpp}\hspace {0.2em}}{4}{lstnumber.2.5.159}%
+\contentsline {section}{\texttt {sparse-table.hpp}\hspace {0.2em}}{4}{lstnumber.2.6.16}%
+\contentsline {section}{\texttt {convex-hull-trick.hpp}\hspace {0.2em}}{4}{lstnumber.2.7.19}%
 \contentsfinish 
