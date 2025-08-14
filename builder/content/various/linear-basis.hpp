@@ -1,6 +1,3 @@
-\kactlref{linear-basis.hpp}
-\rightcaption{2ff3b8, 45 lines}
-\begin{lstlisting}[caption={linear-basis.hpp}, language=C++]
 const int MAX_BITS = 64;
 
 struct LinearBasis
@@ -46,4 +43,3 @@ struct LinearBasis
         return res;
     }
 };
-\end{lstlisting}
