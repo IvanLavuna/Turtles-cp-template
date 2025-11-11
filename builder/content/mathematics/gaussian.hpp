@@ -31,10 +31,10 @@ pair<VI, vector<VI>> solveLinearSystem(vector<VI> a, VI b)
 				continue;
 			swap(a[p], a[l]);
 		}
-		int inv = binpow(a[p][j], mod - 2);
+		int in = binPow(a[p][j], MOD - 2);
 		FOR(i, p + 1, n)
 		{
-			int c = mult(a[i][j], inv);
+			int c = mult(a[i][j], in);
 			FOR(k, j, m + 1)
 				updSub(a[i][k], mult(c, a[p][k]));
 		}
@@ -53,7 +53,7 @@ pair<VI, vector<VI>> solveLinearSystem(vector<VI> a, VI b)
 		v[j] = a[i].back();
 		FOR(k, j + 1, m)
 			updSub(v[j], mult(a[i][k], v[k]));
-		v[j] = mult(v[j], binpow(a[i][j], mod - 2));
+		v[j] = mult(v[j], binPow(a[i][j], MOD - 2));
 	}
 	vector<VI> w;
 	FOR(q, 0, m)
@@ -67,7 +67,7 @@ pair<VI, vector<VI>> solveLinearSystem(vector<VI> a, VI b)
 			int j = pivots[i];
 			FOR(k, j + 1, m)
 				updSub(d[j], mult(a[i][k], d[k]));
-			d[j] = mult(d[j], binpow(a[i][j], mod - 2));
+			d[j] = mult(d[j], binPow(a[i][j], MOD - 2));
 		}
 		w.pb(d);
 	}

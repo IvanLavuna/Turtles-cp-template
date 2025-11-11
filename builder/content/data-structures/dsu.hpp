@@ -1,31 +1,33 @@
 struct DSU
 {
 	int n;
-	VI p, sz;
+	VI par, siz;
 	
-	DSU(int _n = 0) 
+	DSU (int _n = 0)
 	{
 		n = _n;
-		p.resize(n);
-		iota(all(p), 0);
-		sz.assign(n, 1);
+		par.resize(n);
+		iota(all(par), 0);
+		siz.assign(n, 1);
 	}
 	int find(int v)
 	{
-		if (v == p[v])
+		if (v == par[v])
 			return v;
-		return p[v] = find(p[v]);
+		return par[v] = find(par[v]);
 	}
-	bool unite(int u, int v)
+	bool unite(int a, int b)
 	{
-		u = find(u);
-		v = find(v);
-		if (u == v) 
-			return false;
-		if (sz[u] > sz[v])
-			swap(u, v);
-		p[u] = v;
-		sz[v] += sz[u];
-		return true;
+		a = find(a);
+		b = find(b);
+		if (a != b)
+		{
+			if (siz[a] < siz[b])
+				swap(a, b);
+			par[b] = a;
+			siz[a] += siz[b];
+			return true;
+		}
+		return false;
 	}
 };

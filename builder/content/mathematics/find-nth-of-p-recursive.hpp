@@ -96,7 +96,7 @@ int findNthOfPRecursive(const vector<VI>& p, VI a, int n)
 		int s = 1;
 		while ((ll)m * s * s < k)
 			s *= 2;
-		int invS = binpow(s, mod - 2);
+		int invS = binPow(s, MOD - 2);
 		vector<vector<VI>> matrices(m + 1, vector<VI>(h, VI(h)));
 		FOR(l, 0, m + 1)
 		{
@@ -138,5 +138,5 @@ int findNthOfPRecursive(const vector<VI>& p, VI a, int n)
 	PolyMatr denom = {{p[0]}};
 	a = polyMatrProd(polyMatr, n - d + 1, a);
 	const VI& x = polyMatrProd(denom, n - d + 1, {1});
-	return mult(binpow(x[0], mod - 2), a.back());
+	return mult(binPow(x[0], MOD - 2), a.back());
 }

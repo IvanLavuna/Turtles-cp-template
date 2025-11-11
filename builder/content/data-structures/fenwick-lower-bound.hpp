@@ -1,17 +1,15 @@
-int lowerBound(ll x)
+// returns first index p such that sum on [0, p] >= val or n if not found
+int lower_bound(ll val)
 {
-	ll sum = 0;
-	int i = -1;
-	int lg = 31 - __builtin_clz(n);
-	while (lg >= 0)
+	ll sm = 0;
+	int pos = 0;
+	for (int i = 1 << (31 - __builtin_clz(n)); i; i >>= 1)
 	{
-		int j = i + (1 << lg);
-		if (j < n && sum + t[j] < x)
+		if (pos + i < n && sm + ar[pos + i] < val)
 		{
-			sum += t[j];
-			i = j;
+			sm += ar[pos + i];
+			pos += i;
 		}
-		lg--;
 	}
-	return i + 1;
+	return pos;
 }

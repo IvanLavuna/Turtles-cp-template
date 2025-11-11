@@ -3,7 +3,7 @@
  * \texttt{getMaxY(p)} finds the maximum $y$ at $x = p$.
  **/
  
- struct Line
+struct Line
 {
 	ll a, b, xLast;
 	Line() {}

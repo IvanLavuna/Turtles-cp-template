@@ -25,20 +25,20 @@ vector<Pt> hplaneInter(vector<Line> lines)
 	deque<pair<Line, Pt>> d;
 	for (const Line& l : lines)
 	{
-		while (sz(d) > 1 && sgn(l.side((d.end() - 1)->S)) < 0)
+		while (sz(d) > 1 && sgn(l.side((d.end() - 1)->y)) < 0)
 			d.pop_back();
-		while (sz(d) > 1 && sgn(l.side((d.begin() + 1)->S)) < 0)
+		while (sz(d) > 1 && sgn(l.side((d.begin() + 1)->y)) < 0)
 			d.pop_front();
-		if (!d.empty() && sgn(cross(d.back().F.n, l.n)) <= 0)
+		if (!d.empty() && sgn(cross(d.back().x.n, l.n)) <= 0)
 			return {};
-		if (sz(d) < 2 || sgn(d.front().F.side(inter(l, d.back().F))) >= 0)
+		if (sz(d) < 2 || sgn(d.front().x.side(inter(l, d.back().x))) >= 0)
 		{
 			Pt p;
 			if (!d.empty())
 			{
-				p = inter(l, d.back().F);
-				if (!parallel(l, d.front().F))
-					d.front().S = inter(l, d.front().F);
+				p = inter(l, d.back().x);
+				if (!parallel(l, d.front().x))
+					d.front().y = inter(l, d.front().x);
 			}
 			d.pb({l, p});
 		}

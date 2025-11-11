@@ -29,4 +29,4 @@ F id() {
 }
 
 vector<S> v(n, {0, 1}); // each segment length = 1 initially
-lazy_segtree<S, op, e, F, mapping, composition, id> seg(v);
+LazySegTree<S, op, e, F, mapping, composition, id> seg(v);

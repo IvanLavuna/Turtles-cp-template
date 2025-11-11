@@ -59,7 +59,7 @@ VI upperFace, queryAns;
 
 void addVertex(const Pt& p)
 {
-	vertices.pb({p, SZ(vertices)});
+	vertices.pb({p, sz(vertices)});
 }
 void addEdge(int i, int j, const Line& l)
 {
@@ -76,11 +76,11 @@ void addEdge(int i, int j)
 }
 void addQueryPoint(const Pt& p)
 {
-	queryPoints.pb({p, SZ(queryPoints)});
+	queryPoints.pb({p, sz(queryPoints)});
 }
 void findFaces()
 {
-	int n = SZ(vertices), m = SZ(edges);
+	int n = sz(vertices), m = sz(edges);
 	const db ROT_ANGLE = 4;
 	for (auto& p : vertices)
 		p.p = rot(p.p, ROT_ANGLE);
@@ -106,16 +106,16 @@ void findFaces()
 	addVertex({-INF, INF});
 	addVertex({INF, INF});
 	addEdge(n, n + 1);
-	dsu.init(m + 1);
+	dsu = DSU(m + 1);
 	set<int, Comparator> s;
 	s.insert(m);
 	upperFace.resize(m);
 	int ptr = 0;
-	queryAns.resize(SZ(queryPoints));
+	queryAns.resize(sz(queryPoints));
 	for (const IndexedPt& vertex : vertices)
 	{
 		int i = vertex.index;
-		while (ptr < SZ(queryPoints)
+		while (ptr < sz(queryPoints)
 			&& (i >= n || queryPoints[ptr] < vertex))
 		{
 			const auto& [pt, j] = queryPoints[ptr++];

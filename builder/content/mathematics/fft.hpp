@@ -16,7 +16,7 @@ void init()
 
 void fft(VI& a, bool inverse)
 {
-	const int IGEN = binpow(GEN, mod - 2);
+	const int IGEN = binPow(GEN, MOD - 2);
 	int lg = __builtin_ctz(sz(a));
 	FOR(i, 0, sz(a))
 	{
@@ -29,7 +29,7 @@ void fft(VI& a, bool inverse)
 	for(int len = 2; len <= sz(a); len *= 2)
 	{
 		// int diff = inv ? LEN - LEN / len : LEN / len;
-		int ml = binpow(inverse ? IGEN : GEN, LEN / len);
+		int ml = binPow(inverse ? IGEN : GEN, LEN / len);
 		for(int i = 0; i < sz(a); i += len)
 		{
 			// int pos = 0;
@@ -47,7 +47,7 @@ void fft(VI& a, bool inverse)
 	}
 	if (inverse)
 	{
-		int m = binpow(sz(a), mod - 2);
+		int m = binPow(sz(a), MOD - 2);
 		FOR(i, 0, sz(a))
 			// a[i] /= SZ(a);
 			a[i] = mult(a[i], m); 

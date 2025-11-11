@@ -5,7 +5,7 @@
  * */
 
 VI g[N];     
-int sz[N];   
+int siz[N];   
 int h[N];    
 int p[N];    
 int top[N];  
@@ -15,7 +15,7 @@ int t = 0;
 
 void dfsSZ(int v, int par, int hei)
 {
-	sz[v] = 1;
+	siz[v] = 1;
 	h[v] = hei;
 	p[v] = par;
 	for (auto& to : g[v])
@@ -23,8 +23,8 @@ void dfsSZ(int v, int par, int hei)
 		if (to == par) 
 			continue;
 		dfsSZ(to, v, hei + 1);
-		sz[v] += sz[to];
-		if (g[v][0] == par || sz[g[v][0]] < sz[to])
+		siz[v] += siz[to];
+		if (g[v][0] == par || siz[g[v][0]] < siz[to])
 			swap(g[v][0], to);
 	}
 }
@@ -58,7 +58,7 @@ ll get(int u, int v)
 			if (t1 > t2)
 				swap(t1, t2);
 			// query [t1, t2] both inclusive
-			res += query(t1, t2);
+			//res += query(t1, t2);
 			break;
 		}
 		if (h[tu] < h[tv])
@@ -66,7 +66,7 @@ ll get(int u, int v)
 			swap(tu, tv);
 			swap(u, v);
 		}
-		res += query(tin[tu], tin[u]);
+		//res += query(tin[tu], tin[u]);
 		u = p[tu];
 	}
 	return res;

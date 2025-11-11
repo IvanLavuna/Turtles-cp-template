@@ -25,7 +25,7 @@ pii tangentsToConvexPolygon(const vector<Pt>& v, const Pt& p)
 		else
 			r = m;
 	}
-	res.F = r % n;
+	res.x = r % n;
 	l = i;
 	r = i + n - 1;
 	while (r - l > 1)
@@ -37,6 +37,6 @@ pii tangentsToConvexPolygon(const vector<Pt>& v, const Pt& p)
 		else
 			r = m;
 	}
-	res.S = r % n;
+	res.y = r % n;
 	return res;
 }

@@ -30,7 +30,7 @@ VI multipointEval(const VI& p, const VI& x)
 	function<void(int, int, int, VI)> solve
 		= [&](int v, int tl, int tr, VI q)
 	{
-		q = divide(q, t[v]).S;
+		q = divide(q, t[v]).y;
 		if (q.empty())
 			return;
 		if(tl + 1 == tr)

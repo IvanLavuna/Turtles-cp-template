@@ -4,9 +4,9 @@
  **/
 pair<Pt, db> welzl(vector<Pt> v)
 {
-	int n = SZ(v), k = 0, idxes[2];
+	int n = sz(v), k = 0, idxes[2];
 	mt19937 rng;
-	shuffle(ALL(v), rng);
+	shuffle(all(v), rng);
 	Pt c = v[0];
 	db r = 0;
 	while (true)
