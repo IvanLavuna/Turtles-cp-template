@@ -9,25 +9,20 @@ void dfs(int v, vector<VI> const& adj, vector<int> &output)
     output.pb(v);
 }
 
-// input: adj -- adjacency list of G
-// output: comps -- the strongy connected components in G
-// output: adj_cond -- adjacency list of G^SCC (by root vertices)
 void scc(vector<vector<int>> const& adj,
                                   vector<vector<int>> &comps,
                                   vector<vector<int>> &adj_cond) {
     int n = sz(adj);
     comps.clear(), adj_cond.clear();
 
-    vector<int> ord; // will be a sorted list of G's vertices by exit time
+    vector<int> ord; 
 
     vis.assign(n, false);
 
-    // first series of depth first searches
     FOR (i, 0, n)
         if (!vis[i])
             dfs(i, adj, ord);
 
-    // create adjacency list of G^T
     vector<vector<int>> adj_rev(n);
     FOR (v, 0, n)
         for (int u : adj[v])
@@ -36,9 +31,8 @@ void scc(vector<vector<int>> const& adj,
     vis.assign(n, false);
     reverse(all(ord));
 
-    vector<int> roots(n, 0); // gives the root vertex of a vertex's SCC
+    vector<int> roots(n, 0); 
 
-    // second series of depth first searches
     for (auto v : ord)
     {
 		if (!vis[v]) 
@@ -52,7 +46,6 @@ void scc(vector<vector<int>> const& adj,
         }
 	}
 
-    // add edges to condensation graph
     adj_cond.assign(n, {});
     FOR (v, 0, n)
         for (auto u : adj[v])

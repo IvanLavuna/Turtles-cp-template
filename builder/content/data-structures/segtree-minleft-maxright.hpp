@@ -1,62 +1,67 @@
-// 7385d9 for min_left
+// 7d34d3 for min_left 
 
-// max_right: find maximum r that. f(op over [l, r)) == true
-template <class F>
-int max_right(int l, F f)
+// If f is monotone, this is the maximum r that satisfies
+// 	f(op(a[l], a[l + 1], ..., a[r - 1])) = true
+template<class G>
+int max_right(int l, G g)
 {
-	if (l == n) 
-		return n;
-	l += n;
-	int sm = INF;
+	if (l == n) return n;
+	assert(g(e()));
+	l += size;
+	RFOR(i, log + 1, 1) push(l >> i);
+	S sm = e();
 	do
 	{
-		while ((l & 1) == 0) 
-			l >>= 1;
-		if (!f(min(sm, ar[l])))
+		while ((l & 1) == 0) l >>= 1;
+		if (!g(op(sm, d[l])))
 		{
-			while (l < n)
+			while (l < size)
 			{
+				push(l);
 				l = (l << 1);
-				if (f(min(sm, ar[l])))
+				if (g(op(sm, d[l])))
 				{
-					sm = min(sm, ar[l]);
+					sm = op(sm, d[l]);
 					l++;
 				}
 			}
-			return l - n;
+			return l - size;
 		}
-		sm = min(sm, ar[l]);
+		sm = op(sm, d[l]);
 		l++;
 	} while ((l & -l) != l);
 	return n;
 }
 
-// min_left: find minimum l that f(op over [l, r)) == true
-//template <class F>
-//int min_left(int r, F f)
+// If f is monotone, this is the minimum l that satisfies 
+//   f(op(a[l], a[l + 1], ..., a[r - 1])) = true
+//template<class G>
+//int min_left(int r, G g)
 //{
-	//if (r == 0) 
-		//return 0;
-	//r += n;
-	//int sm = INF;
+	//if (r == 0) return 0;
+	//assert(g(e()));
+	//r += size;
+	//RFOR(i, log + 1, 1) push((r - 1) >> i);
+	//S sm = e();
 	//do
 	//{
 		//r--;
 		//while (r > 1 && (r & 1)) r >>= 1;
-		//if (!f(min(ar[r], sm)))
+		//if (!g(op(d[r], sm)))
 		//{
-			//while (r < n)
+			//while (r < size)
 			//{
+				//push(r);
 				//r = (r << 1) | 1;
-				//if (f(min(ar[r], sm)))
+				//if (g(op(d[r], sm)))
 				//{
-					//sm = min(ar[r], sm);
+					//sm = op(d[r], sm);
 					//r--;
 				//}
 			//}
-			//return r + 1 - n;
+			//return r + 1 - size;
 		//}
-		//sm = min(ar[r], sm);
+		//sm = op(d[r], sm);
 	//} while ((r & -r) != r);
 	//return 0;
 //}
