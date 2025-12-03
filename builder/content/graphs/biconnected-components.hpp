@@ -43,10 +43,10 @@ struct Graph
 		s.reserve(7 * sz(components[c]));
 		for (auto e : components[c])
 		{
-			s.insert(edges[e].F);
-			s.insert(edges[e].S);
-			inComp[edges[e].F] = true;
-			inComp[edges[e].S] = true;
+			s.insert(edges[e].x);
+			s.insert(edges[e].y);
+			inComp[edges[e].x] = true;
+			inComp[edges[e].y] = true;
 		}
 		verticesCol.pb(VI(all(s)));
 	}
@@ -59,9 +59,9 @@ struct Graph
 		int cnt = 0;
 		for (auto e : g[v])
 		{
-			int to = edges[e].F;
+			int to = edges[e].x;
 			if (to == v)
-				to = edges[e].S;
+				to = edges[e].y;
 				
 			if (p == to) continue;
 			if (!used[to])

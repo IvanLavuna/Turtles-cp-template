@@ -8,7 +8,7 @@
  * $\dfrac{P(x)}{Q(x)}=\dfrac{P(x)Q(-x)}{Q(x)Q(-x)}=\dfrac{U_\text{e}(x^2)}{V(x^2)} + x \cdot \dfrac{U_\text{o}(x^2)}{V(x^2)}$.
  * Time: $O(d \log d \log n)$.
  */
-int bostanMori(const VI& c, VI a, LL n)
+int bostanMori(const VI& c, VI a, ll n)
 {
 	int k = sz(c);
 	assert(sz(a) == k);
@@ -31,5 +31,5 @@ int bostanMori(const VI& c, VI a, LL n)
 			q[i] = newQ[2 * i];
 		n >>= 1;
 	}
-	return mult(p[0], binpow(q[0], mod - 2));
+	return mult(p[0], binPow(q[0], MOD - 2));
 }

@@ -8,15 +8,15 @@ db closestPair(vector<Pt> v)
 	{
 		return sgn(p.x - q.x) < 0;
 	});
-	set<pair<db, db>> s;
+	set<pdd> s;
 	int n = sz(v), ptr = 0;
 	db h = 1e18;
 	FOR(i, 0, n)
 	{
 		for (auto it = s.lower_bound(MP(v[i].y - h, v[i].x)); 
-			it != s.end() && sgn(it->F - (v[i].y + h)) <= 0; it++)
+			it != s.end() && sgn(it->x - (v[i].y + h)) <= 0; it++)
 		{
-			Pt q = {it->S, it->F};
+			Pt q = {it->y, it->x};
 			h = min(h, abs(v[i] - q));
 		}
 		for (; sgn(v[ptr].x - (v[i].x - h)) <= 0; ptr++)

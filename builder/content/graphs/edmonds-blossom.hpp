@@ -6,10 +6,10 @@ struct Graph
 {
 	int n;
 	vector<VI> g;
-	VI label, first, mate;
+	VI label, fir, mate;
 	
 	Graph(int _n = 0): n(_n), g(n + 1), label(n + 1), 
-		first(n + 1), mate(n + 1) {}
+		fir(n + 1), mate(n + 1) {}
 	
 	void addEdge(int u, int v)
 	{
@@ -42,14 +42,13 @@ struct Graph
 		FOR(i, 0, n + 1)
 			assert(mate[i] == 0);
 		int mt = 0;
-		DSU dsu;
+		DSU dsu(n + 1);
 		FOR(u, 1, n + 1)
 		{
 			if (mate[u] != 0)
 				continue;
 			fill(all(label), -1);
-			iota(all(first), 0);
-			dsu.init(n + 1);
+			iota(all(fir), 0);
 			label[u] = 0;
 			dsu.unite(u, 0);
 			queue<int> q;
@@ -81,7 +80,7 @@ struct Graph
 					}
 					else
 					{
-						int r = first[dsu.find(x)],	s = first[dsu.find(y)];
+						int r = fir[dsu.find(x)], s = fir[dsu.find(y)];
 						if (r == s)
 							continue;
 						int edgeLabel = (n + 1) * x + y;
@@ -91,7 +90,7 @@ struct Graph
 						{
 							if (s != 0)
 								swap(r, s);
-							r = first[dsu.find(label[mate[r]])];
+							r = fir[dsu.find(label[mate[r]])];
 							if (label[r] == -edgeLabel)
 							{
 								join = r;
@@ -101,13 +100,13 @@ struct Graph
 						}
 						for (int z: {x, y})
 						{
-							for (int v = first[dsu.find(z)];
+							for (int v = fir[dsu.find(z)];
 								v != join;
-								v = first[dsu.find(label[mate[v]])])
+								v = fir[dsu.find(label[mate[v]])])
 							{
 								label[v] = edgeLabel;
 								if (dsu.unite(v, join))
-									first[dsu.find(join)] = join;
+									fir[dsu.find(join)] = join;
 								q.push(v);
 							}
 						}

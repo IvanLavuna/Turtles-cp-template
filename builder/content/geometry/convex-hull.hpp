@@ -1,4 +1,4 @@
-vector<Pt> convexHull(vector<Pt> v)
+vector<Pt> convexHull(vector<Pt> v, bool include_collinear = false)
 {
 	if (sz(v) <= 1)
 		return v;
@@ -13,10 +13,10 @@ vector<Pt> convexHull(vector<Pt> v)
 	for (const Pt& p : v)
 	{
 		while (sz(lower) > 1 && 
-			sgn(orient(lower[sz(lower) - 2], lower.back(), p)) <= 0)
+			sgn(orient(lower[sz(lower) - 2], lower.back(), p)) < (include_collinear ? 0 : 1))
 			lower.pop_back();
 		while (sz(upper) > 1 && 
-			sgn(orient(upper[sz(upper) - 2], upper.back(), p)) >= 0)
+			sgn(orient(upper[sz(upper) - 2], upper.back(), p)) > (include_collinear ? 0 : -1))
 			upper.pop_back();
 		lower.pb(p);
 		upper.pb(p);

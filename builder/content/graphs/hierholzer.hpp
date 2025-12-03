@@ -1,4 +1,3 @@
-
 /**
  * Description: Finds an Eulerian path in a directed or undirected graph.
  * $g$ is a graph with $n$ vertices. $g[u]$ is a vector of pairs $(v, \text{edge\_id})$. $m$ is the number of edges in the graph.
@@ -7,7 +6,7 @@
  * Otherwise, returns the path in the form (vertices, edges) with vertices containing $m + 1$ elements and edges containing $m$ elements.
  * If you need an Eulerian cycle, check vertices[0] = vertices.back().
  */
-// 528807 for undirected
+// f14a40 for undirected
 tuple<bool, int, int> checkDirected(vector<vector<pii>>& g)
 {
 	int n = sz(g), v1 = -1, v2 = -1;
@@ -73,27 +72,27 @@ pair<VI, VI> hierholzer(vector<vector<pii>> g, int m)
 	{		
 		while (k < m)
 		{
-			while (!g[v].empty() && used[g[v].back().S])
+			while (!g[v].empty() && used[g[v].back().y])
 				g[v].pop_back();
 			if (!g[v].empty())
 				break;
 			d.push_front(d.back());
 			d.pop_back();
-			v = d.back().F;
+			v = d.back().x;
 			k++;
 		}
 		if (k == m)
 			return {{-1}, {-1}};
 		d.pb(g[v].back());
-		used[g[v].back().S] = true;
+		used[g[v].back().y] = true;
 		g[v].pop_back();
-		v = d.back().F;
+		v = d.back().x;
 	}
-	while (v1 != -1 && d.back().S != m - 1)
+	while (v1 != -1 && d.back().y != m - 1)
 	{
 		d.push_front(d.back());
 		d.pop_back();
-		v = d.back().F;
+		v = d.back().x;
 	}
 	VI vertices = {v}, edges;
 	for (auto [u, e] : d)

@@ -1,22 +1,22 @@
 VI g[N];
-int sz[N];
+int siz[N];
 bool usedC[N];
 
 int dfsSZ(int v, int par)
 {
-	sz[v] = 1;
+	siz[v] = 1;
 	for (auto to : g[v])
 	{
 		if (to != par && !usedC[to])
-			sz[v] += dfsSZ(to, v);
+			siz[v] += dfsSZ(to, v);
 	}
-	return sz[v];
+	return siz[v];
 }
 
 void build(int u)
 {
 	dfsSZ(u, -1);
-	int szAll = sz[u];
+	int szAll = siz[u];
 	int pr = u;
 	while (true)
 	{
@@ -25,7 +25,7 @@ void build(int u)
 		{
 			if (to == pr || usedC[to]) 
 				continue;
-			if (sz[to] * 2 > szAll)
+			if (siz[to] * 2 > szAll)
 			{
 				v = to;
 				break;

@@ -20,7 +20,7 @@ VI multXor(VI a, VI b, int k)
 	FOR(i, 0, 1 << k)
 		a[i] = mult(a[i], b[i]);
 	convXor(a, k);
-	int d = inv(1 << k);
+	int d = binPow(1 << k, MOD - 2);
 	FOR(i, 0, 1 << k)
 		a[i] = mult(a[i], d);
 	return a;

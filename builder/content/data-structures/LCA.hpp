@@ -1,10 +1,10 @@
 struct LCA
 {
     int n;
-    vector<int> I; // v -> po(v)
-    vector<int> RI;
-    vector<int> M; // to index mapping
-    vector<int> D;
+    VI I; // v -> po(v)
+    VI RI;
+    VI M; // to index mapping
+    VI D;
     SparseTable st;
 
     LCA(const vector<vector<int>>& adj, int root)

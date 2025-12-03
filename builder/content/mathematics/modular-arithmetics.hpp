@@ -1,35 +1,35 @@
-const int mod = 998244353;
+const int MOD = 998244353;
 
 int add(int a, int b)
 {
-	return a + b < mod ? a + b : a + b - mod;
+	return a + b < MOD ? a + b : a + b - MOD;
 }
 
 void updAdd(int& a, int b)
 {
 	a += b;
-	if (a >= mod)
-		a -= mod;
+	if (a >= MOD)
+		a -= MOD;
 }
 
 int sub(int a, int b)
 {
-	return a - b >= 0 ? a - b : a - b + mod;
+	return a - b >= 0 ? a - b : a - b + MOD;
 }
 
 void updSub(int& a, int b)
 {
 	a -= b;
 	if (a < 0)
-		a += mod;
+		a += MOD;
 }
 
 int mult(int a, int b)
 {
-	return (ll)a * b % mod;
+	return (ll)a * b % MOD;
 }
 
-int binpow(int a, ll n)
+int binPow(int a, ll n)
 {
 	int res = 1;
 	while (n)
@@ -37,7 +37,7 @@ int binpow(int a, ll n)
 		if (n & 1)
 			res = mult(res, a);
 		a = mult(a, a);
-		n /= 2;
+		n >>= 1;
 	}
 	return res;
 }
@@ -49,7 +49,7 @@ void init()
 	inv[1] = 1;
 	FOR(i, 2, N)
 	{
-		inv[i] = mult(mod - mod / i, inv[mod % i]);
+		inv[i] = mult(MOD - MOD / i, inv[MOD % i]);
 	}
 	fact[0] = ifact[0] = 1;
 	FOR(i, 1, N)
