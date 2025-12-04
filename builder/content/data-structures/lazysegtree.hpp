@@ -11,18 +11,18 @@ struct LazySegTree
     vector<F> lz;
 
     LazySegTree(int _n = 0) : LazySegTree(vector<S>(_n, e())) {}
-    //LazySegTree(const vector<S>& v)
-    //{
-        //n = sz(v);
-        //size = 1;
-        //while (size < n) 
-			//size <<= 1;
-        //log = __builtin_ctz(size);
-        //d.assign(2 * size, e());
-        //lz.assign(size, id());
-        //FOR(i, 0, n) d[size + i] = v[i];
-        //RFOR(i, size, 1) update(i);
-    //}
+    LazySegTree(const vector<S>& v)
+    {
+        n = sz(v);
+        size = 1;
+        while (size < n) 
+			size <<= 1;
+        log = __builtin_ctz(size);
+        d.assign(2 * size, e());
+        lz.assign(size, id());
+        FOR(i, 0, n) d[size + i] = v[i];
+        RFOR(i, size, 1) update(i);
+    }
 
     void update(int k) { d[k] = op(d[k << 1], d[k << 1 | 1]); }
 
