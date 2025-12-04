@@ -1,4 +1,5 @@
-// hash = 4fae5e
+// hash = 0e3002
+// hash of hash = d23fe0
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -9,8 +10,8 @@ using namespace std;
 #define pb push_back
 #define x first
 #define y second
-#define FOR(i, a, b) for(int i = (a); i < (b); i++)
-#define RFOR(i, a, b) for(int i = (a) - 1; i >= (b); i--)
+#define FOR(i, a, b) for(int i = (a); i < (b); ++i)
+#define RFOR(i, a, b) for(int i = (a) - 1; i >= (b); --i)
 #define MP make_pair
 
 typedef long long ll;
