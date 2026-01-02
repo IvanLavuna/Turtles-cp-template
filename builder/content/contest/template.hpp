@@ -1,4 +1,4 @@
-// hash = 0e3002
+// hash = b76baa
 // hash of hash = d23fe0
 
 #include <bits/stdc++.h>
@@ -42,18 +42,17 @@ int32_t main()
 	
 	int TET = 1e9;
 	//cin >> TET;
-	for (int i = 1; i <= TET; i++)
+	for (int i = 1; i <= TET; ++i)
 	{
 		if (solve())
-		{
 			break;
-		}
+		
 		//#ifdef ONPC
 			//cerr << "_____________________________\n";
 		//#endif
 	}
 	#ifdef ONPC
-		cerr << "\nfinished in " << clock() * 1.0 / CLOCKS_PER_SEC << " sec\n";
+		cerr << "\nfinished in " << clock() * 1. / CLOCKS_PER_SEC << " sec\n";
 	#endif
 	return 0;
 }

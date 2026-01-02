@@ -5,9 +5,9 @@ int lower_bound(ll val)
 	int pos = 0;
 	for (int i = 1 << (31 - __builtin_clz(n)); i; i >>= 1)
 	{
-		if (pos + i < n && sm + ar[pos + i] < val)
+		if (pos + i < n && sm + t[pos + i] < val)
 		{
-			sm += ar[pos + i];
+			sm += t[pos + i];
 			pos += i;
 		}
 	}
