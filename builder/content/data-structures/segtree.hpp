@@ -1,3 +1,13 @@
+struct Node
+{
+	
+};
+
+Node op(const Node& l, const Node& r)
+{
+	
+}
+
 struct SegTree
 {
 	int n;
