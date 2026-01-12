@@ -1,6 +1,6 @@
 vector<bool> vis; 
 
-void dfs(int v, vector<VI> const& adj, vector<int> &output) 
+void dfs(int v, vector<VI> const& adj, VI &output) 
 {
     vis[v] = true;
     for (auto u : adj[v])
@@ -9,13 +9,17 @@ void dfs(int v, vector<VI> const& adj, vector<int> &output)
     output.pb(v);
 }
 
-void scc(vector<vector<int>> const& adj,
-                                  vector<vector<int>> &comps,
-                                  vector<vector<int>> &adj_cond) {
+/*
+ * Kosaraju SCC + condensation graph
+ * comps - strongly connected components in topological order
+ * adj_cond - condensation DAG, each scc represented by vertex with the smallest index inside it
+ */
+void scc(vector<VI> const& adj, vector<VI> &comps, vector<VI> &adj_cond)
+{
     int n = sz(adj);
     comps.clear(), adj_cond.clear();
 
-    vector<int> ord; 
+    VI ord; 
 
     vis.assign(n, false);
 
@@ -23,7 +27,7 @@ void scc(vector<vector<int>> const& adj,
         if (!vis[i])
             dfs(i, adj, ord);
 
-    vector<vector<int>> adj_rev(n);
+    vector<VI> adj_rev(n);
     FOR (v, 0, n)
         for (int u : adj[v])
             adj_rev[u].pb(v);
@@ -31,7 +35,7 @@ void scc(vector<vector<int>> const& adj,
     vis.assign(n, false);
     reverse(all(ord));
 
-    vector<int> roots(n, 0); 
+    VI roots(n, 0); 
 
     for (auto v : ord)
     {
