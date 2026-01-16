@@ -1,4 +1,4 @@
-// 7d34d3 for min_left 
+// 34a7ec for min_left 
 
 // If f is monotone, this is the maximum r that satisfies
 // 	f(op(a[l], a[l + 1], ..., a[r - 1])) = true
@@ -13,21 +13,21 @@ int max_right(int l, G g)
 	do
 	{
 		while ((l & 1) == 0) l >>= 1;
-		if (!g(op(sm, d[l])))
+		if (!g(op(sm, t[l])))
 		{
 			while (l < size)
 			{
 				push(l);
 				l = (l << 1);
-				if (g(op(sm, d[l])))
+				if (g(op(sm, t[l])))
 				{
-					sm = op(sm, d[l]);
+					sm = op(sm, t[l]);
 					l++;
 				}
 			}
 			return l - size;
 		}
-		sm = op(sm, d[l]);
+		sm = op(sm, t[l]);
 		l++;
 	} while ((l & -l) != l);
 	return n;
@@ -47,21 +47,21 @@ int max_right(int l, G g)
 	//{
 		//r--;
 		//while (r > 1 && (r & 1)) r >>= 1;
-		//if (!g(op(d[r], sm)))
+		//if (!g(op(t[r], sm)))
 		//{
 			//while (r < size)
 			//{
 				//push(r);
 				//r = (r << 1) | 1;
-				//if (g(op(d[r], sm)))
+				//if (g(op(t[r], sm)))
 				//{
-					//sm = op(d[r], sm);
+					//sm = op(t[r], sm);
 					//r--;
 				//}
 			//}
 			//return r + 1 - size;
 		//}
-		//sm = op(d[r], sm);
+		//sm = op(t[r], sm);
 	//} while ((r & -r) != r);
 	//return 0;
 //}

@@ -7,7 +7,7 @@ template<class S, S (*op)(S, S), S (*e)(),
 struct LazySegTree
 {
     int n, size, log;
-    vector<S> d;
+    vector<S> t;
     vector<F> lz;
 
     LazySegTree(int _n = 0) : LazySegTree(vector<S>(_n, e())) {}
@@ -18,17 +18,17 @@ struct LazySegTree
         while (size < n) 
 			size <<= 1;
         log = __builtin_ctz(size);
-        d.assign(2 * size, e());
+        t.assign(2 * size, e());
         lz.assign(size, id());
-        FOR(i, 0, n) d[size + i] = v[i];
+        FOR(i, 0, n) t[size + i] = v[i];
         RFOR(i, size, 1) update(i);
     }
 
-    void update(int k) { d[k] = op(d[k << 1], d[k << 1 | 1]); }
+    void update(int k) { t[k] = op(t[k << 1], t[k << 1 | 1]); }
 
     void all_apply(int k, F f)
     {
-        d[k] = mapping(f, d[k]);
+        t[k] = mapping(f, t[k]);
         if (k < size) lz[k] = composition(f, lz[k]);
     }
 
@@ -43,7 +43,7 @@ struct LazySegTree
     {
         p += size;
         RFOR(i, log + 1, 1) push(p >> i);
-        d[p] = x;
+        t[p] = x;
         FOR (i, 1, log + 1) update(p >> i);
     }
 
@@ -51,7 +51,7 @@ struct LazySegTree
     {
         p += size;
         RFOR(i, log + 1, 1) push(p >> i);
-        return d[p];
+        return t[p];
     }
 
     // [l, r)
@@ -67,20 +67,20 @@ struct LazySegTree
         S sml = e(), smr = e();
         while (l < r)
         {
-            if (l & 1) sml = op(sml, d[l++]);
-            if (r & 1) smr = op(d[--r], smr);
+            if (l & 1) sml = op(sml, t[l++]);
+            if (r & 1) smr = op(t[--r], smr);
             l >>= 1; r >>= 1;
         }
         return op(sml, smr);
     }
 
-    S all_prod() { return d[1]; }
+    S all_prod() { return t[1]; }
 
     void apply(int p, F f)
     {
         p += size;
         RFOR(i, log + 1, 1) push(p >> i);
-        d[p] = mapping(f, d[p]);
+        t[p] = mapping(f, t[p]);
         FOR(i, 1, log + 1) update(p >> i);
     }
 

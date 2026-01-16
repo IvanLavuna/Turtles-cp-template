@@ -1,14 +1,14 @@
+// ! remove adj_cond from scc 
 struct TwoSat 
 {
     int n, N;
-    vector<vector<int>> g;
-    vector<vector<int>> comps, g_cond;
+    vector<VI> g;
+    vector<VI> comps;
     vector<bool> val;
 
-    TwoSat(int _n) : n(_n), N(2 * _n), g(N), val(_n, false) {}
+    TwoSat(int _n) : n(_n), N(2 * n), g(N), val(n, false) {}
 
-    // add clause (x_a v x_b)
-    // na, nb — whether to negate
+	// add clause (x_a OR x_b). na, nb - whether to negate
     void add(int a, bool na, int b, bool nb) 
     {
         int A = 2 * a ^ na;
@@ -18,15 +18,14 @@ struct TwoSat
         g[NA].pb(B);
         g[NB].pb(A);
     }
-
+	
+	// returns true if the formula is satisfiable. in this case, val contains a valid assignment
     bool solve() 
     {
         comps.clear();
-        g_cond.clear();
+        scc(g, comps);
 
-        scc(g, comps, g_cond);
-
-        vector<int> id(N, -1);
+        VI id(N, -1);
         FOR (i, 0, sz(comps))
             for (int v : comps[i])
                 id[v] = i;
